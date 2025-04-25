@@ -7,6 +7,7 @@ const MarkUploadCheck = () => {
   const [batch, setBatch] = useState("");
   const [semester, setSemester] = useState("");
   const [result, setResult] = useState(null);
+  const [uploadedResult, setUploadedResult] = useState(null);
 
   const handleCheck = async () => {
     if (!batch || !semester) {
@@ -20,6 +21,7 @@ const MarkUploadCheck = () => {
       });
 
       setResult(res.data);
+      setUploadedResult(null); // reset uploaded result
       if (res.data.status === "complete") {
         toast.success(res.data.message);
       } else {
@@ -27,6 +29,26 @@ const MarkUploadCheck = () => {
       }
     } catch (err) {
       toast.error("Something went wrong while checking");
+      console.error(err);
+    }
+  };
+
+  const handleUploadedCheck = async () => {
+    if (!batch || !semester) {
+      toast.error("Please select both batch and semester");
+      return;
+    }
+
+    try {
+      const res = await axios.get("http://localhost:5000/api/admin/check-marks-uploaded", {
+        params: { batch, semester },
+      });
+
+      setUploadedResult(res.data);
+      setResult(null); // reset missing result
+      toast.success("Fetched uploaded entries successfully!");
+    } catch (err) {
+      toast.error("Something went wrong while fetching uploaded marks");
       console.error(err);
     }
   };
@@ -64,43 +86,78 @@ const MarkUploadCheck = () => {
           </select>
         </div>
 
-        <div className="text-center">
+        <div className="flex justify-center gap-4">
           <button
             className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700"
             onClick={handleCheck}
           >
-            Check Upload Status
+            Check Missing Marks
+          </button>
+          <button
+            className="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700"
+            onClick={handleUploadedCheck}
+          >
+            Check Uploaded Marks
           </button>
         </div>
 
+        {/* Missing Entries Table */}
         {result && result.status === "incomplete" && (
-  <div className="mt-8">
-    <h2 className="text-lg font-semibold text-red-600 mb-2">Missing Entries</h2>
-    <div className="overflow-x-auto">
-      <table className="w-full text-sm border">
-        <thead className="bg-gray-200 text-left">
-          <tr>
-            <th className="p-2 border">Roll No</th>
-            <th className="p-2 border">Student Name</th>
-            <th className="p-2 border">Subject</th>
-            <th className="p-2 border">Teacher</th>
-          </tr>
-        </thead>
-        <tbody>
-          {result.missing_entries.map((entry, index) => (
-            <tr key={index} className="border-b">
-              <td className="p-2 border">{entry.roll_number}</td>
-              <td className="p-2 border">{entry.student_name || entry.name}</td>
-              <td className="p-2 border">{entry.subject_name}</td>
-              <td className="p-2 border">{entry.teacher_name || "N/A"}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  </div>
-)}
+          <div className="mt-8">
+            <h2 className="text-lg font-semibold text-red-600 mb-2">Missing Entries</h2>
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm border">
+                <thead className="bg-gray-200 text-left">
+                  <tr>
+                    <th className="p-2 border">Roll No</th>
+                    <th className="p-2 border">Student Name</th>
+                    <th className="p-2 border">Subject</th>
+                    <th className="p-2 border">Teacher</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {result.missing_entries.map((entry, index) => (
+                    <tr key={index} className="border-b">
+                      <td className="p-2 border">{entry.roll_number}</td>
+                      <td className="p-2 border">{entry.student_name || entry.name}</td>
+                      <td className="p-2 border">{entry.subject_name}</td>
+                      <td className="p-2 border">{entry.teacher_name || "N/A"}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
 
+        {/* Uploaded Entries Table */}
+        {uploadedResult && uploadedResult.status === "uploaded" && (
+          <div className="mt-8">
+            <h2 className="text-lg font-semibold text-green-600 mb-2">Uploaded Marks</h2>
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm border">
+                <thead className="bg-gray-200 text-left">
+                  <tr>
+                    <th className="p-2 border">Roll No</th>
+                    <th className="p-2 border">Student Name</th>
+                    <th className="p-2 border">Subject</th>
+                    <th className="p-2 border">Teacher</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {uploadedResult.uploaded_entries.map((entry, index) => (
+                    <tr key={index} className="border-b">
+                      <td className="p-2 border">{entry.roll_number}</td>
+                      <td className="p-2 border">{entry.student_name || entry.name}</td>
+                      <td className="p-2 border">{entry.subject_name}</td>
+                      <td className="p-2 border">{entry.teacher_name || "N/A"}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

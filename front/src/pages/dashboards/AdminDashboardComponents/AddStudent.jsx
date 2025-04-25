@@ -55,15 +55,15 @@ const AddStudent = () => {
   };
 
   return (
-    <div className="flex flex-col gap-6 lg:flex-row">
+    <div className="flex flex-col gap-6  lg:flex-row">
       {/* Left Panel: Add Student Form */}
-      <div className="w-full lg:w-1/2 bg-white rounded-xl shadow-md p-6 bg-zinc-100">
-        <h2 className="text-2xl font-semibold text-center mb-4 text-gray-800">
+      <div className="w-full lg:w-1/2 bg-zinc-900 rounded-xl shadow-md p-6 bg-zinc-100">
+        <h2 className="text-3xl font-semibold text-center mb-4 text-purple-100">
           ➕ Add New Student
         </h2>
 
         <div className="mb-4">
-          <label className="block text-gray-700 font-medium mb-1">Batch</label>
+          <label className="block text-purple-100 text-xl font-medium mb-1">Batch</label>
           <select
             value={batch}
             onChange={(e) => setBatch(e.target.value)}
@@ -78,38 +78,38 @@ const AddStudent = () => {
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-gray-700 font-medium mb-1">Roll Number</label>
+            <label className="block  text-purple-100 text-xl font-medium mb-1">Roll Number</label>
             <input
               type="text"
               name="roll_number"
               value={student.roll_number}
               onChange={handleChange}
               placeholder="Enter roll number"
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-2  bg-white border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
           <div>
-            <label className="block text-gray-700 font-medium mb-1">Name</label>
+            <label className="block  text-purple-100 text-xl font-medium mb-1">Name</label>
             <input
               type="text"
               name="name"
               value={student.name}
               onChange={handleChange}
               placeholder="Enter full name"
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4  bg-white py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
           <div>
-            <label className="block text-gray-700 font-medium mb-1">Password</label>
+            <label className="block  text-purple-100 text-xl font-medium mb-1">Password</label>
             <input
               type="password"
               name="password"
               value={student.password}
               onChange={handleChange}
               placeholder="Enter password"
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full bg-white px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
@@ -133,21 +133,21 @@ const AddStudent = () => {
       </div>
 
       {/* Right Panel: Student List */}
-      <div className="w-full lg:w-1/2 bg-white rounded-xl shadow-md p-6 bg-zinc-100">
-        <h2 className="text-xl font-semibold text-center mb-4 text-gray-800">
+      <div className="w-full lg:w-1/2 bg-zinc-900 rounded-xl shadow-md p-6 bg-zinc-100">
+        <h2 className="text-3xl font-semibold text-center mb-4 text-purple-200">
           🧑‍🎓 Students in {batch || "Selected Batch"}
         </h2>
         {studentsList.length === 0 ? (
-          <p className="text-center text-gray-500">No students loaded</p>
+          <p className="text-center text-xl text-purple-100">No students loaded</p>
         ) : (
-          <ul className="max-h-[400px] overflow-y-auto divide-y">
+          <ol className="max-h-[400px]  overflow-y-auto divide-y">
             {studentsList.map((stu) => (
               <li key={stu.student_roll_number} className="py-2">
-                <span className="font-medium">{stu.student_name}</span> —{" "}
-                <span className="text-gray-600">{stu.student_roll_number}</span>
+                <span className="font-medium text-purple-100">{stu.student_name}</span> —{" "}
+                <span className="text-purple-100 ">{stu.student_roll_number}</span>
               </li>
             ))}
-          </ul>
+          </ol>
         )}
       </div>
     </div>

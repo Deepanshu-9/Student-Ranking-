@@ -639,7 +639,7 @@ app.post("/api/update-final-scores", (req, res) => {
 
 
 
-// aPI to check teacher uploaded the student for given bacth and semester .
+// aPI to check student whose marks are not uploaed  .
 app.get("/api/admin/check-marks-completeness", (req, res) => {
   const { batch, semester } = req.query;
 
@@ -685,6 +685,50 @@ app.get("/api/admin/check-marks-completeness", (req, res) => {
     }
   });
 });
+
+
+
+//api to check student whose marks are uploaded
+app.get("/api/admin/check-marks-uploaded", (req, res) => {
+  const { batch, semester } = req.query;
+
+  if (!batch || !semester) {
+    return res.status(400).json({ error: "Batch and semester are required" });
+  }
+
+  const query = `
+    SELECT 
+      s.roll_number,
+      s.name AS student_name,
+      sub.name AS subject_name,
+      t.name AS teacher_name,
+      p.student_roll_number IS NOT NULL AS data_present
+    FROM student s
+    JOIN subject sub ON sub.semester = ?
+    LEFT JOIN teacher_subject_mapping tsm ON tsm.subject_code = sub.subject_code
+    LEFT JOIN teacher t ON t.email = tsm.teacher_email
+    LEFT JOIN performance p 
+      ON p.student_roll_number = s.roll_number 
+      AND p.subject_name = sub.name
+      AND p.semester = ?
+    WHERE s.batch = ?
+    ORDER BY s.roll_number, sub.name
+  `;
+
+  db.query(query, [semester, semester, batch], (err, results) => {
+    if (err) return res.status(500).json({ error: err.message });
+
+    // Filter to get only entries where marks are uploaded (data is present)
+    let uploadedEntries = results.filter(row => row.data_present);
+
+    return res.json({
+      status: "uploaded",
+      message: "Subjects with uploaded marks for this batch and semester",
+      uploaded_entries: uploadedEntries
+    });
+  });
+});
+
 
 
 

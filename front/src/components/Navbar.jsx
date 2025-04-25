@@ -10,21 +10,21 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-zinc-900 text-white px-6 py-4 shadow-md flex items-center justify-between">
+    <nav className="bg-zinc-900 text-purple-100 px-6 py-4 shadow-md flex items-center justify-between">
       {/* Left: Dashboard */}
-      <div className="text-lg font-semibold cursor-pointer" onClick={() => navigate("/dashboard")}>
+      <div className="text-2xl font-semibold cursor-pointer hover:text-teal-100 transition" onClick={() => navigate("/dashboard")}>
         Dashboard
       </div>
 
       {/* Center: Upcoming Events & Request to Admin */}
-      <div className="flex space-x-6 text-sm font-medium">
-        <button onClick={() => navigate("/events")} className="hover:text-yellow-300 transition">
+      <div className="flex space-x-6 text-lg font-medium">
+        <button onClick={() => navigate("/events")} className="hover:text-teal-100  transition">
           Upcoming Events
         </button>
-        <button onClick={() => navigate("/home")} className="hover:text-yellow-300 transition">
+        <button onClick={() => navigate("/home")} className="hover:text-teal-100 transition">
           Home
         </button>
-        <button onClick={() => navigate("/request-admin")} className="hover:text-yellow-300 transition">
+        <button onClick={() => navigate("/request-admin")} className="hover:text-teal-100 transition">
           Request to Admin
         </button>
       </div>
@@ -33,7 +33,7 @@ const Navbar = () => {
       <div>
         <button
           onClick={handleLogout}
-          className="bg-white text-purple-600 px-4 py-1 rounded-md font-medium hover:bg-gray-100 transition"
+          className="bg-zinc-700 text-purple-200 px-4 py-1 rounded-2xl font-medium hover:text-teal-100 bg-zinc-500 transition "
         >
           Logout
         </button>

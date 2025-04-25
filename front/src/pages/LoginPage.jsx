@@ -52,29 +52,29 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-indigo-500 to-purple-500">
-      <div className="bg-white p-8 rounded-xl shadow-lg w-full max-w-md">
+    <div className="flex items-center justify-center min-h-screen bg-zinc-700">
+      <div className="bg-zinc-900 p-8 rounded-xl shadow-lg w-full max-w-md">
         {!loginType ? (
           <>
-            <h2 className="text-2xl font-bold text-center text-purple-700 mb-6">
+            <h2 className="text-7xl  font-bold text-center  text-purple-300 mb-6">
               Login As
             </h2>
             <div className="flex flex-col gap-4">
               <button
                 onClick={() => setLoginType("student")}
-                className="bg-purple-600 text-white py-2 rounded-md hover:bg-purple-700"
+                className="bg-blue-200 text-xl font-bold  py-2 rounded-md hover:bg-blue-300"
               >
                 Student
               </button>
               <button
                 onClick={() => setLoginType("teacher")}
-                className="bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700"
+                className="bg-indigo-300 text-xl font-bold  py-2 rounded-md hover:bg-indigo-400"
               >
                 Teacher
               </button>
               <button
                 onClick={() => setLoginType("admin")}
-                className="bg-red-600 text-white py-2 rounded-md hover:bg-red-700"
+                className="bg-green-100 text-xl font-bold  py-2 rounded-md hover:bg-green-200"
               >
                 Admin
               </button>
@@ -82,7 +82,7 @@ const LoginPage = () => {
           </>
         ) : (
           <form onSubmit={handleLogin}>
-            <h2 className="text-2xl font-bold text-center text-purple-700 mb-6 capitalize">
+            <h2 className="text-5xl font-bold text-center text-purple-200 mb-6 capitalize">
               {loginType} Login
             </h2>
 
@@ -92,16 +92,16 @@ const LoginPage = () => {
 
             {loginType === "student" && (
               <>
-                <label className="block mb-2 text-purple-600 font-semibold">
+                <label className="block mb-2 text-xl text-purple-300 font-semibold">
                   Roll Number
                 </label>
-                <input
+                <input 
                   type="text"
                   value={credentials.roll_number || ""}
                   onChange={(e) =>
                     handleInputChange("roll_number", e.target.value)
                   }
-                  className="w-full mb-4 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+                  className="w-full bg-white mb-4 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
                   required
                 />
               </>
@@ -109,7 +109,7 @@ const LoginPage = () => {
 
             {loginType === "teacher" && (
               <>
-                <label className="block mb-2 text-purple-600 font-semibold">
+                <label className="block mb-2 text-xl text-purple-300 font-semibold">
                   Email
                 </label>
                 <input
@@ -118,7 +118,7 @@ const LoginPage = () => {
                   onChange={(e) =>
                     handleInputChange("email", e.target.value)
                   }
-                  className="w-full mb-4 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+                  className="w-full bg-white mb-4 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
                   required
                 />
               </>
@@ -126,7 +126,7 @@ const LoginPage = () => {
 
             {loginType === "admin" && (
               <>
-                <label className="block mb-2 text-purple-600 font-semibold">
+                <label className="block mb-2 text-xl text-purple-300 font-semibold">
                   Admin ID
                 </label>
                 <input
@@ -135,26 +135,26 @@ const LoginPage = () => {
                   onChange={(e) =>
                     handleInputChange("admin_id", e.target.value)
                   }
-                  className="w-full mb-4 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+                  className="w-full bg-white mb-4 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
                   required
                 />
               </>
             )}
 
-            <label className="block mb-2 text-purple-600 font-semibold">
+            <label className="block mb-2 text-xl text-purple-300 font-semibold">
               Password
             </label>
             <input
               type="password"
               value={credentials.password || ""}
               onChange={(e) => handleInputChange("password", e.target.value)}
-              className="w-full mb-6 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className="w-full bg-white mb-6 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
               required
             />
 
             <button
               type="submit"
-              className="w-full bg-purple-600 text-white py-2 rounded-md hover:bg-purple-700 transition duration-200"
+              className="w-full bg-purple-200 font-bold text-2xl py-2 rounded-md hover:bg-purple-500 transition duration-200"
             >
               Login
             </button>
@@ -165,7 +165,7 @@ const LoginPage = () => {
                 setCredentials({});
                 setError("");
               }}
-              className="mt-4 text-sm text-center text-gray-500 cursor-pointer hover:text-purple-700"
+              className="mt-4 text-m text-center text-gray-100 cursor-pointer hover:text-purple-400"
             >
               ← Back to Role Selection
             </p>

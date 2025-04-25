@@ -37,58 +37,51 @@ const TeacherDashboard = () => {
   };
 
   return (
-    <div style={{ padding: "3rem", backgroundColor: "#f4f6f9" }}>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "2rem" }}>
-        <h2 style={{ color: "#007BFF", fontSize: "2.5rem" }}>
+    <div className="p-12 bg-zinc-800 min-h-screen">
+      <div className="flex justify-between  items-center mb-8">
+        <h2 className="text-5xl text-teal-100 font-bold ">
           Welcome, {teacher.name}!
         </h2>
         <button
           onClick={handleAddMarksClick}
-          style={{
-            padding: "0.5rem 1.5rem",
-            backgroundColor: "#28a745",
-            color: "#fff",
-            border: "none",
-            borderRadius: "5px",
-            fontSize: "1.1rem",
-            cursor: "pointer",
-            boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-          }}
+          className="px-6 py-2 bg-teal-600  font-semibold rounded-xl text-lg shadow-md hover:bg-teal-300 transition"
         >
           Add Student Marks
         </button>
       </div>
 
       {/* Profile Info */}
-      <div style={{ marginBottom: "2rem", backgroundColor: "#ffffff", padding: "2rem", borderRadius: "8px" }}>
-        <h4 style={{ fontWeight: "bold", color: "#333" }}>Profile Info:</h4>
-        <p><strong>Name:</strong> {teacher.name}</p>
-        <p><strong>Email:</strong> {teacher.email}</p>
+      <div className="mb-8 bg-zinc-300 p-8 rounded-xl shadow-xl">
+        <h4 className="text-2xl font-bold text-gray-900 mb-2">Profile Info:</h4>
+        <p className="text-2xl"><span className="text-2xl font-semibold">Name:</span > {teacher.name}</p>
+        <p className="text-2xl"><span className="text-2xl font-semibold">Email:</span> {teacher.email}</p>
       </div>
 
       {/* Assigned Subjects */}
-      <div style={{ backgroundColor: "#ffffff", padding: "2rem", borderRadius: "8px" }}>
-        <h4 style={{ fontWeight: "bold", color: "#333", marginBottom: "1.5rem" }}>Assigned Subjects:</h4>
-        {error && <p style={{ color: "red" }}>{error}</p>}
+      <div className="bg-zinc-900 p-8 rounded-lg shadow-sm">
+        <h4 className="text-3xl font-bold text-purple-100 mb-6">Assigned Subjects:</h4>
+        {error && <p className="text-red-500">{error}</p>}
         {subjects.length > 0 ? (
-          <table style={{ width: "100%", borderCollapse: "collapse" }}>
-            <thead>
-              <tr style={{ backgroundColor: "#007BFF", color: "#fff" }}>
-                <th style={{ padding: "12px", border: "1px solid #ddd" }}>Subject Code</th>
-                <th style={{ padding: "12px", border: "1px solid #ddd" }}>Subject Name</th>
-                <th style={{ padding: "12px", border: "1px solid #ddd" }}>Semester</th>
-              </tr>
-            </thead>
-            <tbody>
-              {subjects.map((subj, index) => (
-                <tr key={index} style={{ backgroundColor: index % 2 === 0 ? "#f9f9f9" : "#fff" }}>
-                  <td style={{ padding: "12px", border: "1px solid #ddd" }}>{subj.subject_code}</td>
-                  <td style={{ padding: "12px", border: "1px solid #ddd" }}>{subj.subject_name}</td>
-                  <td style={{ padding: "12px", border: "1px solid #ddd" }}>{subj.semester}</td>
+          <div className="overflow-x-auto">
+            <table className="w-full border rounded-xl border-gray-300">
+              <thead>
+                <tr className="bg-teal-100 text-xl ">
+                  <th className="p-3 border border-gray-900">Subject Code</th>
+                  <th className="p-3 border border-gray-900">Subject Name</th>
+                  <th className="p-3 border border-gray-900">Semester</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {subjects.map((subj, index) => (
+                  <tr key={index} className={index % 2 === 0 ? "bg-zinc-600" : "bg-zinc-700"}>
+                    <td className="p-3 border text-purple-100 text-xl border-gray-900">{subj.subject_code}</td>
+                    <td className="p-3 border text-purple-100 text-xl border-gray-900">{subj.subject_name}</td>
+                    <td className="p-3 border text-purple-100 text-xl border-gray-900">{subj.semester}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         ) : (
           !error && <p>No subjects assigned.</p>
         )}
