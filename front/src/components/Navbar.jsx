@@ -51,7 +51,7 @@ const Navbar = () => {
     <nav
       className={`${
         showNavbar ? "top-0" : "-top-20" // toggle the navbar visibility
-      } z-20 fixed w-full bg-cyan-500 text-purple-100 px-6 py-4 shadow-md flex items-center justify-between transition-all duration-300 ease-in-out`}
+      } z-20 fixed w-full bg-zinc-900 text-purple-100 px-6 py-4 shadow-md flex items-center justify-between transition-all duration-300 ease-in-out`}
     >
       {/* Left: Dashboard */}
       <div
@@ -62,7 +62,7 @@ const Navbar = () => {
       </div>
 
       {/* Center: Upcoming Events & Request to Admin */}
-      <div className="flex space-x-6 text-lg font-medium">
+      {/* <div className="flex space-x-6 text-lg font-medium">
         <button
           onClick={() => navigate("/events")}
           className="hover:text-teal-100 transition"
@@ -81,14 +81,14 @@ const Navbar = () => {
         >
           Request to Admin
         </button>
-      </div>
+      </div> */}
 
       {/* Right: Logout */}
       <div>
         <Button
-          variant="outline"
-          colorScheme="teal"
-          color={"blue"}
+          variant="solid"
+          colorScheme="cyan"
+          color={"black"}
           onClick={handleLogout}
           className="bg-zinc-700 text-purple-200 px-4 py-1 rounded-2xl font-medium hover:text-teal-100 bg-zinc-500 transition"
         >

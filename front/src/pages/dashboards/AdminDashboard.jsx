@@ -5,7 +5,7 @@ import AddStudent from "./AdminDashboardComponents/AddStudent";
 import MarkUploadCheck from "./AdminDashboardComponents/MarkUploadCheck";
 import AddTeacher from "./AdminDashboardComponents/AddTeacher";
 import AssignSubject from "./AdminDashboardComponents/AssignSubject";
-
+import {Heading,Button} from "@chakra-ui/react"
 const AdminDashboard = () => {
   const [activeTab, setActiveTab] = useState("addStudent");
 
@@ -25,12 +25,14 @@ const AdminDashboard = () => {
   };
 
   return (
-    <div className="p-8 font-sans bg-zinc-800 min-h-screen">
+    <div className="pt-20   font-sans bg-zinc-800 min-h-screen">
       <ToastContainer />
-      <h1 className="text-5xl font-semibold text-center text-purple-200 mb-8">📋 Admin Dashboard</h1>
+      <Heading className="text-5xl font-semibold text-center text-purple-200 mb-8">
+         Admin Dashboard
+      </Heading>
 
-      <div className="flex flex-wrap justify-center  gap-4 mb-8">
-        <button
+      <div className="flex flex-wrap justify-center  gap-4 mb-8 mt-5">
+        <Button
           className={`px-4 py-2 text-sm rounded border transition ${
             activeTab === "addStudent"
               ? "bg-teal-300 text-xl  border-blue-900"
@@ -39,9 +41,9 @@ const AdminDashboard = () => {
           onClick={() => setActiveTab("addStudent")}
         >
           Add Student
-        </button>
+        </Button>
 
-        <button
+        <Button
           className={`px-4 py-2 text-sm rounded border transition ${
             activeTab === "addTeacher"
               ? "bg-blue-600 text-xl  text-white border-blue-600"
@@ -50,9 +52,9 @@ const AdminDashboard = () => {
           onClick={() => setActiveTab("addTeacher")}
         >
           Add Teacher
-        </button>
+        </Button>
 
-        <button
+        <Button
           className={`px-4 py-2 text-sm rounded border transition ${
             activeTab === "assignSubject"
               ? "bg-purple-300 text-xl   border-purple-800"
@@ -61,9 +63,9 @@ const AdminDashboard = () => {
           onClick={() => setActiveTab("assignSubject")}
         >
           Assign Subject
-        </button>
+        </Button>
 
-        <button
+        <Button
           className={`px-4 py-2 text-sm rounded border transition ${
             activeTab === "checkMarks"
               ? "bg-yellow-300 text-xl   border-zinc-300"
@@ -72,7 +74,7 @@ const AdminDashboard = () => {
           onClick={() => setActiveTab("checkMarks")}
         >
           Marks Upload Check
-        </button>
+        </Button>
       </div>
 
       <div className=" p-8 rounded-lg shadow-md transition-all">
