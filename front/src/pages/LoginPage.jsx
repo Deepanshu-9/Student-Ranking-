@@ -1,6 +1,19 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import "../styles/style.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  Heading,
+  Stack,
+  Text,
+  Button,
+  Input,
+} from "@chakra-ui/react";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -52,127 +65,168 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-zinc-700">
-      <div className="bg-zinc-900 p-8 rounded-xl shadow-lg w-full max-w-md">
-        {!loginType ? (
-          <>
-            <h2 className="text-7xl  font-bold text-center  text-purple-300 mb-6">
-              Login As
-            </h2>
-            <div className="flex flex-col gap-4">
-              <button
-                onClick={() => setLoginType("student")}
-                className="bg-blue-200 text-xl font-bold  py-2 rounded-md hover:bg-blue-300"
-              >
-                Student
-              </button>
-              <button
-                onClick={() => setLoginType("teacher")}
-                className="bg-indigo-300 text-xl font-bold  py-2 rounded-md hover:bg-indigo-400"
-              >
-                Teacher
-              </button>
-              <button
-                onClick={() => setLoginType("admin")}
-                className="bg-green-100 text-xl font-bold  py-2 rounded-md hover:bg-green-200"
-              >
-                Admin
-              </button>
-            </div>
-          </>
-        ) : (
-          <form onSubmit={handleLogin}>
-            <h2 className="text-5xl font-bold text-center text-purple-200 mb-6 capitalize">
-              {loginType} Login
-            </h2>
+    <>
+      <div class="background">
+        <ToastContainer />
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <div className="flex items-center justify-center min-h-screen bg-zinc-900   anim_gradient">
+          <div className="login-card p-8 rounded-xl shadow-lg w-full max-w-md ">
+            {!loginType ? (
+              <div className="px-4">
+                <Heading className="text-center text-white py-2  ">
+                  Login As
+                </Heading>
+                <div className="flex flex-col gap-4">
+                  <Button
+                    onClick={() => setLoginType("student")}
+                    className="bg-blue-200 text-xl font-bold py-2  rounded-md hover:bg-blue-300"
+                    colorPalette="teal"
+                    variant="solid"
+                  >
+                    Student
+                  </Button>
+                  <Button
+                    onClick={() => setLoginType("teacher")}
+                    className="bg-indigo-300 text-xl font-bold  py-2 rounded-md hover:bg-indigo-400"
+                  >
+                    Teacher
+                  </Button>
+                  <Button
+                    onClick={() => setLoginType("admin")}
+                    className="bg-green-100 text-xl font-bold  py-2 rounded-md hover:bg-green-200"
+                  >
+                    Admin
+                  </Button>
+                </div>
+              </div>
+            ) : (
+              <form onSubmit={handleLogin}>
+                <h2 className="text-5xl font-bold text-center text-purple-200 mb-6 capitalize">
+                  {loginType} Login
+                </h2>
 
-            {error && (
-              <p className="text-red-500 text-center mb-4">{error}</p>
-            )}
+                {error && (
+                  <p className="text-red-500 text-center mb-4">{error}</p>
+                )}
 
-            {loginType === "student" && (
-              <>
+                {loginType === "student" && (
+                  <>
+                    <label className="block mb-2 text-xl text-purple-300 font-semibold">
+                      Roll Number
+                    </label>
+                    <Input
+                      color={"white"}
+                      type="text"
+                      value={credentials.roll_number || ""}
+                      onChange={(e) =>
+                        handleInputChange("roll_number", e.target.value)
+                      }
+                      className="w-full bg-white mb-4 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+                      required
+                    />
+                  </>
+                )}
+
+                {loginType === "teacher" && (
+                  <>
+                    <label className="block mb-2 text-xl text-purple-300 font-semibold">
+                      Email
+                    </label>
+                    <Input
+                      type="email"
+                      value={credentials.email || ""}
+                      onChange={(e) =>
+                        handleInputChange("email", e.target.value)
+                      }
+                      color={"white"}
+                      className="w-full bg-white mb-4 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+                      required
+                    />
+                  </>
+                )}
+
+                {loginType === "admin" && (
+                  <>
+                    <label className="block mb-2 text-xl text-purple-300 font-semibold">
+                      Admin ID
+                    </label>
+                    <Input
+                      type="text"
+                      value={credentials.admin_id || ""}
+                      onChange={(e) =>
+                        handleInputChange("admin_id", e.target.value)
+                      }
+                      color={"white"}
+                      className="w-full bg-white mb-4 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+                      required
+                    />
+                  </>
+                )}
+
                 <label className="block mb-2 text-xl text-purple-300 font-semibold">
-                  Roll Number
+                  Password
                 </label>
-                <input 
-                  type="text"
-                  value={credentials.roll_number || ""}
+                <Input
+                  type="password"
+                  value={credentials.password || ""}
                   onChange={(e) =>
-                    handleInputChange("roll_number", e.target.value)
+                    handleInputChange("password", e.target.value)
                   }
-                  className="w-full bg-white mb-4 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+                  color={"white"}
+                  className="w-full bg-white mb-6 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
                   required
                 />
-              </>
+
+                <Button
+                  type="submit"
+                  background={"purple.500"}
+                  w="full"
+                  fontWeight="bold"
+                  fontSize="2xl"
+                  py={2}
+                  rounded="md"
+                  _hover={{ bg: "purple.500" }}
+                  transition="0.2s"
+                  marginTop={"10px"}
+                >
+                  Login
+                </Button>
+
+                <p
+                  onClick={() => {
+                    setLoginType("");
+                    setCredentials({});
+                    setError("");
+                  }}
+                  className="mt-4 text-m text-center text-gray-100 cursor-pointer hover:text-purple-400"
+                >
+                  ← Back to Role Selection
+                </p>
+              </form>
             )}
-
-            {loginType === "teacher" && (
-              <>
-                <label className="block mb-2 text-xl text-purple-300 font-semibold">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  value={credentials.email || ""}
-                  onChange={(e) =>
-                    handleInputChange("email", e.target.value)
-                  }
-                  className="w-full bg-white mb-4 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
-                  required
-                />
-              </>
-            )}
-
-            {loginType === "admin" && (
-              <>
-                <label className="block mb-2 text-xl text-purple-300 font-semibold">
-                  Admin ID
-                </label>
-                <input
-                  type="text"
-                  value={credentials.admin_id || ""}
-                  onChange={(e) =>
-                    handleInputChange("admin_id", e.target.value)
-                  }
-                  className="w-full bg-white mb-4 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
-                  required
-                />
-              </>
-            )}
-
-            <label className="block mb-2 text-xl text-purple-300 font-semibold">
-              Password
-            </label>
-            <input
-              type="password"
-              value={credentials.password || ""}
-              onChange={(e) => handleInputChange("password", e.target.value)}
-              className="w-full bg-white mb-6 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
-              required
-            />
-
-            <button
-              type="submit"
-              className="w-full bg-purple-200 font-bold text-2xl py-2 rounded-md hover:bg-purple-500 transition duration-200"
-            >
-              Login
-            </button>
-
-            <p
-              onClick={() => {
-                setLoginType("");
-                setCredentials({});
-                setError("");
-              }}
-              className="mt-4 text-m text-center text-gray-100 cursor-pointer hover:text-purple-400"
-            >
-              ← Back to Role Selection
-            </p>
-          </form>
-        )}
+          </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
