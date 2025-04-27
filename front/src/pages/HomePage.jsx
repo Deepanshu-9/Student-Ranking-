@@ -96,20 +96,21 @@ const HomePage = () => {
       {/* Main content with padding-top */}
       <div className="flex flex-1 overflow-y-hidden pt-24">
         {/* Sidebar */}
-        <div className="w-full sm:w-1/3 lg:w-1/4 bg-[#90e0ef] p-6 shadow-lg flex flex-col fixed h-full top-0 z-10">
-          {" "}
-          {/* Make it fixed */}
+        <div className="w-full sm:w-1/3 lg:w-1/4 fixed h-full top-0 z-10 p-6 shadow-lg flex flex-col bg-white/10 backdrop-blur-md border border-white/30 rounded-r-2xl">
+          {/* Sidebar Heading */}
           <Heading
-            color="gray"
-            marginBottom={"15px"}
+            color="gray.400"
+            marginBottom="15px"
             className="text-3xl font-bold text-purple-200 mb-8 text-center pt-20"
           >
             Select Options
           </Heading>
+
+          {/* Select Inputs */}
           <div className="flex flex-col gap-4">
             <Select
               bg=""
-              color="gray"
+              color="gray.400"
               borderColor="purple.500"
               _hover={{ borderColor: "purple.300" }}
               _focus={{
@@ -128,7 +129,7 @@ const HomePage = () => {
             <Select
               borderColor="purple.500"
               onChange={(e) => setSemester(e.target.value)}
-              color={"gray"}
+              color="gray.400"
               value={semester}
             >
               <option value="">Select Semester</option>
@@ -140,6 +141,8 @@ const HomePage = () => {
               <option value="6">Semester 6</option>
             </Select>
           </div>
+
+          {/* Error Message */}
           {error && <p className="text-red-500 text-center mt-6">{error}</p>}
         </div>
 
