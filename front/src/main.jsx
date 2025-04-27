@@ -5,6 +5,7 @@ import App from "./App.jsx";
 import React from "react";
 import { ChakraProvider } from "@chakra-ui/react";
 
+
 createRoot(document.getElementById("root")).render(
   <ChakraProvider>
     <StrictMode>

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Button, Heading, Select } from "@chakra-ui/react";
 
 const MarkUploadCheck = () => {
   const [batch, setBatch] = useState("");
@@ -54,24 +55,26 @@ const MarkUploadCheck = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 p-6">
+    <div className="min-h-screen bg-gray-700 p-6">
       <ToastContainer />
-      <div className="max-w-4xl mx-auto bg-white p-6 rounded shadow">
-        <h1 className="text-2xl font-bold text-center text-blue-700 mb-6">Check Marks Upload Status</h1>
+      <div className="max-w-4xl mx-auto bg-zinc-900 p-6 rounded shadow">
+        <Heading className="text-2xl font-bold text-center text-cyan-500 mb-6" padding={"20px"}>Check Marks Upload Status</Heading>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-          <select
+          <Select
             className="border rounded px-4 py-2 w-full"
             value={batch}
+            color={"gray.400"}
             onChange={(e) => setBatch(e.target.value)}
           >
             <option value="">Select Batch</option>
             <option value="2022-2025">2022-2025</option>
             <option value="2023-2026">2023-2026</option>
             <option value="2024-2027">2024-2027</option>
-          </select>
+          </Select>
 
-          <select
+          <Select
+            color={"gray.400"}
             className="border rounded px-4 py-2 w-full"
             value={semester}
             onChange={(e) => setSemester(e.target.value)}
@@ -83,22 +86,22 @@ const MarkUploadCheck = () => {
             <option value="4">Semester 4</option>
             <option value="5">Semester 5</option>
             <option value="6">Semester 6</option>
-          </select>
+          </Select>
         </div>
 
         <div className="flex justify-center gap-4">
-          <button
-            className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700"
+          <Button
+            className="bg-cyan-600 text-white px-6 py-2 rounded hover:bg-blue-700"
             onClick={handleCheck}
           >
             Check Missing Marks
-          </button>
-          <button
+          </Button>
+          <Button
             className="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700"
             onClick={handleUploadedCheck}
           >
             Check Uploaded Marks
-          </button>
+          </Button>
         </div>
 
         {/* Missing Entries Table */}
@@ -107,7 +110,7 @@ const MarkUploadCheck = () => {
             <h2 className="text-lg font-semibold text-red-600 mb-2">Missing Entries</h2>
             <div className="overflow-x-auto">
               <table className="w-full text-sm border">
-                <thead className="bg-gray-200 text-left">
+                <thead className="bg-gray-800 text-left">
                   <tr>
                     <th className="p-2 border">Roll No</th>
                     <th className="p-2 border">Student Name</th>
@@ -136,7 +139,7 @@ const MarkUploadCheck = () => {
             <h2 className="text-lg font-semibold text-green-600 mb-2">Uploaded Marks</h2>
             <div className="overflow-x-auto">
               <table className="w-full text-sm border">
-                <thead className="bg-gray-200 text-left">
+                <thead className="bg-gray-800 text-left">
                   <tr>
                     <th className="p-2 border">Roll No</th>
                     <th className="p-2 border">Student Name</th>
