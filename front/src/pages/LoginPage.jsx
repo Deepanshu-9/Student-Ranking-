@@ -120,9 +120,9 @@ const LoginPage = () => {
               </div>
             ) : (
               <form onSubmit={handleLogin}>
-                <h2 className="text-5xl font-bold text-center text-purple-200 mb-6 capitalize">
+                <Heading className="text-5xl font-bold text-center text-purple-200 mb-6 capitalize">
                   {loginType} Login
-                </h2>
+                </Heading>
 
                 {error && (
                   <p className="text-red-500 text-center mb-4">{error}</p>

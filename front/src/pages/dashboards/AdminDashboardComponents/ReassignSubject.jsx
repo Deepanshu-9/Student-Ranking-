@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Heading } from "@chakra-ui/react";
 
 const ReassignSubject = () => {
   const [assigned, setAssigned] = useState({});
@@ -85,19 +86,19 @@ const ReassignSubject = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 p-6">
-      <h1 className="text-3xl font-bold mb-6 text-center text-blue-700">Reassign Subjects</h1>
+    <div className="min-h-screen bg-gray-800 p-6">
+      <Heading padding={"10px"} className="text-3xl font-bold mb-6 text-center text-cyan-400">Reassign Subjects</Heading>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-7xl mx-auto">
 
         {/* Assigned Subjects */}
-        <div className="bg-white rounded shadow p-6">
-          <h2 className="text-xl font-semibold text-gray-800 mb-4">Assigned Subjects</h2>
+        <div className="bg-zinc-900 rounded shadow p-6">
+          <Heading className="text-xl font-semibold text-gray-200 mb-4">Assigned Subjects</Heading>
           {Object.entries(assigned).map(([teacher, subjects], idx) => (
             <div key={idx} className="mb-6">
-              <h3 className="text-lg font-bold text-blue-600 mb-2">{teacher}</h3>
+              <h3 className="text-lg font-bold text-cyan-500 mb-2">{teacher}</h3>
               <ul className="space-y-2">
                 {subjects.map((subj, i) => (
-                  <li key={i} className="flex justify-between items-center bg-gray-50 p-3 rounded border text-sm">
+                  <li key={i} className="flex justify-between items-center bg-gray-500 p-3 rounded border text-sm">
                     <span>{subj.subject_name} (Sem {subj.semester})</span>
                     <button
                       onClick={() => handleUnassign(subj.teacher_email, subj.subject_code)}
@@ -113,16 +114,16 @@ const ReassignSubject = () => {
         </div>
 
         {/* Unassigned Subjects */}
-        <div className="bg-white rounded shadow p-6">
-          <h2 className="text-xl font-semibold text-gray-800 mb-4">Unassigned Subjects</h2>
+        <div className="bg-zinc-900 rounded shadow p-6">
+          <Heading className="text-xl font-semibold text-gray-200 mb-4" paddingBottom={"25px"}>Unassigned Subjects</Heading>
           <ul className="text-sm space-y-4">
             {unassigned.map((subj, index) => (
-              <li key={index} className="bg-gray-50 p-3 rounded border">
+              <li key={index} className="bg-gray-500 p-3 rounded border">
                 <div className="flex justify-between items-center">
                   <span>{subj.name} ({subj.subject_code}) - Sem {subj.semester}</span>
                   <button
                     onClick={() => toggleDropdown(subj.subject_code)}
-                    className="text-blue-600 text-xs font-semibold hover:underline"
+                    className="text-cyan-600 text-xs font-semibold hover:underline"
                   >
                     {dropdownVisible[subj.subject_code] ? "Hide" : "Assign"}
                   </button>
@@ -130,7 +131,7 @@ const ReassignSubject = () => {
                 {dropdownVisible[subj.subject_code] && (
                   <div className="mt-2">
                     {loadingTeachers ? (
-                      <p className="text-xs text-gray-500 italic">Loading teachers...</p>
+                      <p className="text-xs text-gray-200 italic">Loading teachers...</p>
                     ) : (
                       <select
                         className="w-full border px-2 py-1 text-sm rounded mt-1"
