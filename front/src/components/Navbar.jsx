@@ -51,7 +51,7 @@ const Navbar = () => {
     <nav
       className={`${
         showNavbar ? "top-0" : "-top-20" // toggle the navbar visibility
-      } z-20 fixed w-full bg-[#62b6cb] text-purple-100 px-6 py-4 shadow-md flex items-center justify-between transition-all duration-300 ease-in-out`}
+      } z-20 fixed w-full bg-cyan-500 text-purple-100 px-6 py-4 shadow-md flex items-center justify-between transition-all duration-300 ease-in-out`}
     >
       {/* Left: Dashboard */}
       <div

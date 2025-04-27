@@ -76,6 +76,18 @@ const LoginPage = () => {
         <span></span>
         <span></span>
         <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
         <div className="flex items-center justify-center min-h-screen bg-zinc-900   anim_gradient">
           <div className="login-card p-8 rounded-xl shadow-lg w-full max-w-md ">
             {!loginType ? (
@@ -121,8 +133,8 @@ const LoginPage = () => {
                     <label className="block mb-2 text-xl text-purple-300 font-semibold">
                       Roll Number
                     </label>
-                      <Input
-                        color={"white"}
+                    <Input
+                      color={"white"}
                       type="text"
                       value={credentials.roll_number || ""}
                       onChange={(e) =>
@@ -145,7 +157,7 @@ const LoginPage = () => {
                       onChange={(e) =>
                         handleInputChange("email", e.target.value)
                       }
-                        color={"white"}
+                      color={"white"}
                       className="w-full bg-white mb-4 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
                       required
                     />
@@ -163,7 +175,7 @@ const LoginPage = () => {
                       onChange={(e) =>
                         handleInputChange("admin_id", e.target.value)
                       }
-                        color={"white"}
+                      color={"white"}
                       className="w-full bg-white mb-4 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
                       required
                     />
@@ -179,7 +191,7 @@ const LoginPage = () => {
                   onChange={(e) =>
                     handleInputChange("password", e.target.value)
                   }
-                    color={"white"}
+                  color={"white"}
                   className="w-full bg-white mb-6 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
                   required
                 />
