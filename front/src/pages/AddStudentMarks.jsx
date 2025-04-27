@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
+import { Button, Heading, Input, Select } from "@chakra-ui/react";
+import Hyperspeed from "../components/hyperSpeed";
 
 const AddStudentMarks = () => {
   const [batch, setBatch] = useState("");
@@ -32,9 +34,12 @@ const AddStudentMarks = () => {
     setMarksData({});
 
     try {
-      const res = await axios.get("http://localhost:5000/api/teacher-subjects-semesterwise", {
-        params: { teacher_email: teacherEmail, semester: selectedSemester },
-      });
+      const res = await axios.get(
+        "http://localhost:5000/api/teacher-subjects-semesterwise",
+        {
+          params: { teacher_email: teacherEmail, semester: selectedSemester },
+        }
+      );
       setSubjects(res.data);
     } catch {
       toast.error("Failed to fetch subjects.");
@@ -91,8 +96,7 @@ const AddStudentMarks = () => {
 
   const handleInputChange = (rollNumber, field, value) => {
     const numValue = Number(value);
-  
-    // Validation logic
+
     if (field === "internal_exam_1" || field === "internal_exam_2") {
       if (numValue < 0 || numValue > 20) {
         toast.warn("Internal exam marks must be between 0 and 20");
@@ -105,12 +109,15 @@ const AddStudentMarks = () => {
       }
     } else if (field === "assignment" || field === "attendance") {
       if (numValue < 0 || numValue > 5) {
-        toast.warn(`${field.charAt(0).toUpperCase() + field.slice(1)} score must be between 0 and 5`);
+        toast.warn(
+          `${
+            field.charAt(0).toUpperCase() + field.slice(1)
+          } score must be between 0 and 5`
+        );
         return;
       }
     }
-  
-    // If validation passes, update state
+
     setMarksData((prev) => ({
       ...prev,
       [rollNumber]: {
@@ -119,7 +126,6 @@ const AddStudentMarks = () => {
       },
     }));
   };
-  
 
   const handleEdit = (rollNumber) => {
     setEditableStudents((prev) => ({
@@ -204,84 +210,205 @@ const AddStudentMarks = () => {
   };
 
   return (
-    <div className="p-5 font-sans bg-zinc-100  h-screen  w-screen">
-      <ToastContainer />
-      <h2 className="text-center text-7xl font-bold mb-5">Add Student Marks</h2>
+    <>
+      <Hyperspeed
+        effectOptions={{
+          onSpeedUp: () => {},
+          onSlowDown: () => {},
+          distortion: "turbulentDistortion",
+          length: 400,
+          roadWidth: 10,
+          islandWidth: 2,
+          lanesPerRoad: 4,
+          fov: 90,
+          fovSpeedUp: 150,
+          speedUp: 2,
+          carLightsFade: 0.4,
+          totalSideLightSticks: 20,
+          lightPairsPerRoadWay: 40,
+          shoulderLinesWidthPercentage: 0.05,
+          brokenLinesWidthPercentage: 0.1,
+          brokenLinesLengthPercentage: 0.5,
+          lightStickWidth: [0.12, 0.5],
+          lightStickHeight: [1.3, 1.7],
+          movingAwaySpeed: [60, 80],
+          movingCloserSpeed: [-120, -160],
+          carLightsLength: [400 * 0.03, 400 * 0.2],
+          carLightsRadius: [0.05, 0.14],
+          carWidthPercentage: [0.3, 0.5],
+          carShiftX: [-0.8, 0.8],
+          carFloorSeparation: [0, 5],
+          colors: {
+            roadColor: 0x080808,
+            islandColor: 0x0a0a0a,
+            background: 0x000000,
+            shoulderLines: 0xffffff,
+            brokenLines: 0xffffff,
+            leftCars: [0xd856bf, 0x6750a2, 0xc247ac],
+            rightCars: [0x03b3c3, 0x0e5ea5, 0x324555],
+            sticks: 0x03b3c3,
+          },
+        }}
+      />
+      <div className="p-8 pt-20 font-sans bg-black min-h-screen text-white overflow-x-hidden">
+        <ToastContainer />
+        <Heading textAlign="center" size="2xl" mb="8" color="cyan.400">
+          Add Student Marks
+        </Heading>
 
-      <div className="flex gap-5 mb-6 flex-wrap">
-        <div className="flex-1">
-          <label className="block mb-2  text-4xl font-semibold">Batch:</label>
-          <select value={batch} onChange={handleBatchChange} className="w-full p-2 border  bg-zinc-900 text-purple-100 text-2xl border-gray-300 rounded">
-            <option className="bg-zinc-900 text-purple-100" value="">-- Select Batch --</option>
-            {batches.map((b, idx) => (
-              <option className="bg-zinc-900 text-purple-100" key={idx} value={b}>{b}</option>
-            ))}
-          </select>
+        <div className="flex flex-wrap gap-6 mb-10">
+          {/* Batch */}
+          <div className="flex-1 min-w-[250px]">
+            <label className="block mb-2 text-lg font-bold">Batch:</label>
+            <Select
+              placeholder="Select Batch"
+              value={batch}
+              onChange={handleBatchChange}
+              bg="gray.700"
+              color="white"
+              _hover={{ bg: "cyan.600" }}
+            >
+              {batches.map((b, idx) => (
+                <option key={idx} value={b} className="text-black">
+                  {b}
+                </option>
+              ))}
+            </Select>
+          </div>
+
+          {/* Semester */}
+          <div className="flex-1 min-w-[250px]">
+            <label className="block mb-2 text-lg font-bold">Semester:</label>
+            <Select
+              bg="gray.700"
+              color="white"
+              _hover={{ bg: "cyan.600" }}
+              value={semester}
+              onChange={handleSemesterChange}
+              className="w-full p-3 rounded bg-cyan-700 text-white border border-cyan-400"
+            >
+              <option value="">Select Semester</option>
+              {semesters.map((sem, idx) => (
+                <option key={idx} value={sem} className="text-black">
+                  {sem}
+                </option>
+              ))}
+            </Select>
+          </div>
+
+          {/* Subject */}
+          <div className="flex-1 min-w-[250px]">
+            <label className="block mb-2 text-lg font-bold">Subject:</label>
+            <Select
+              bg="gray.700"
+              color="white"
+              _hover={{ bg: "cyan.600" }}
+              value={subject}
+              onChange={handleSubjectChange}
+              className="w-full p-3 rounded bg-cyan-700 text-white border border-cyan-400"
+              disabled={!subjects.length}
+            >
+              <option value="">Select Subject</option>
+              {subjects.map((sub, idx) => (
+                <option
+                  key={idx}
+                  value={sub.subject_name}
+                  className="text-black"
+                >
+                  {sub.subject_name}
+                </option>
+              ))}
+            </Select>
+          </div>
         </div>
 
-        <div className="flex-1">
-          <label className="block mb-2  text-4xl font-semibold">Semester:</label>
-          <select value={semester} onChange={handleSemesterChange} className="w-full  text-2xl bg-zinc-900 text-purple-100 p-2 border border-gray-300 rounded">
-            <option className="bg-zinc-900 text-purple-100" value="">-- Select Semester --</option>
-            {semesters.map((sem, idx) => (
-              <option className="bg-zinc-900 text-purple-100" key={idx} value={sem}>{sem}</option>
-            ))}
-          </select>
-        </div>
+        {/* Students */}
+        {students.length > 0 && (
+          <div>
+            <Heading className="text-center text-4xl font-extrabold mb-10 text-white">
+              Enter Marks
+            </Heading>
 
-        <div className="flex-1">
-          <label className="block mb-2  text-4xl font-semibold">Subject:</label>
-          <select  value={subject} onChange={handleSubjectChange} className="w-full bg-zinc-900 text-purple-100 text-2xl p-2 border border-gray-300 rounded" disabled={!subjects.length}>
-            <option className="bg-zinc-900 text-purple-100" value="">-- Select Subject --</option>
-            {subjects.map((sub, idx) => (
-              <option  key={idx} value={sub.subject_name}>{sub.subject_name}</option>
-            ))}
-          </select>
-        </div>
-      </div>
+            {students.map((student, idx) => {
+              const data = marksData[student.student_roll_number] || {};
+              const editable = editableStudents[student.student_roll_number];
+              const submitted = data.submitted;
 
-      {students.length > 0 && (
-        <div className="mt-10">
-          <h4 className="text-5xl font-semibold text-center mb-6">Enter Marks</h4>
-          {students.map((student, idx) => {
-            const data = marksData[student.student_roll_number] || {};
-            const editable = editableStudents[student.student_roll_number];
-            const submitted = data.submitted;
+              return (
+                <div
+                  key={idx}
+                  className="p-8 mb-8 rounded-3xl shadow-2xl backdrop-blur-md bg-white/20"
+                  style={{
+                    border: "1px solid",
+                    borderColor: submitted ? "#9f7aea" : "#f56565", // purple-500 or red-500 hex colors
+                  }}
+                >
+                  <div className="text-3xl font-bold mb-6 text-white ">
+                    {student.student_name} ({student.student_roll_number})
+                  </div>
 
-            return (
-              <div key={idx} className={`mb-6 p-5 rounded-xl border ${submitted ? "bg-zinc-900 border-purple-200" : "bg-zinc-700 text-black border-red-400"}`}>
-                <div className="mb-3 text-3xl text-purple-100 font-semibold">
-                  {student.student_name} ({student.student_roll_number})
-                </div>
+                  <div className="flex flex-wrap gap-6 justify-between">
+                    {[
+                      "internal_exam_1",
+                      "internal_exam_2",
+                      "external_exam",
+                      "assignment",
+                      "attendance",
+                    ].map((field) => (
+                      <div key={field} className="flex flex-col w-40">
+                        <label className="capitalize text-purple-300 mb-1">
+                          {field.replace(/_/g, " ")}:
+                        </label>
+                        <Input
+                          type="number"
+                          value={data[field] || ""}
+                          onChange={(e) =>
+                            handleInputChange(
+                              student.student_roll_number,
+                              field,
+                              e.target.value
+                            )
+                          }
+                          disabled={submitted && !editable}
+                          className="p-2 rounded-lg bg-white/20 text-white placeholder-purple-200 focus:outline-none focus:ring-2 focus:ring-purple-300"
+                        />
+                      </div>
+                    ))}
 
-                <div className="flex flex-wrap items-center gap-4 text-xl text-purple-100">
-                  {["internal_exam_1", "internal_exam_2", "external_exam", "assignment", "attendance"].map((field) => (
-                    <div className="flex items-center gap-2" key={field}>
-                      <label className="font-medium capitalize">{field.replace(/_/g, " ")}:</label>
-                      <input
-                        type="number"
-                        value={data[field] || ""}
-                        onChange={(e) => handleInputChange(student.student_roll_number, field, e.target.value)}
-                        disabled={submitted && !editable}
-                        className="w-20 p-2 border border-gray-300 rounded"
-                      />
+                    <div className="flex items-end">
+                      {submitted && !editable ? (
+                        <Button
+                          onClick={() =>
+                            handleEdit(student.student_roll_number)
+                          }
+                          className="px-6 py-3 bg-yellow-400 hover:bg-yellow-300 rounded-xl text-black font-bold transition"
+                        >
+                          Edit
+                        </Button>
+                      ) : submitted && editable ? (
+                        <Button
+                          onClick={() => handleUpdate(student)}
+                          className="px-6 py-3 bg-green-400 hover:bg-green-300 rounded-xl text-black font-bold transition"
+                        >
+                          Update
+                        </Button>
+                      ) : (
+                        <Button
+                          onClick={() => handleSubmit(student)}
+                          className="px-6 py-3 bg-blue-400 hover:bg-blue-300 rounded-xl text-black font-bold transition"
+                        >
+                          Submit
+                        </Button>
+                      )}
                     </div>
-                  ))}
-
-                  {submitted && !editable ? (
-                    <button onClick={() => handleEdit(student.student_roll_number)} className="bg-teal-400  px-4  text-black py-2 rounded hover:bg-teal-200">Edit</button>
-                  ) : submitted && editable ? (
-                    <button onClick={() => handleUpdate(student)} className="bg-purple-100 text-black px-4 py-2 rounded hover:bg-purple-300">Update</button>
-                  ) : (
-                    <button onClick={() => handleSubmit(student)} className="bg-blue-100  text-black px-4 py-2 rounded hover:bg-blue-200">Submit</button>
-                  )}
+                  </div>
                 </div>
-              </div>
-            );
-          })}
-        </div>
-      )}
-    </div>
+              );
+            })}
+          </div>
+        )}
+      </div>
+    </>
   );
 };
 
