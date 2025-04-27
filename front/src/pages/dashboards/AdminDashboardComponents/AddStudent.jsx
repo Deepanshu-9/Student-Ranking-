@@ -67,7 +67,7 @@ const AddStudent = () => {
           <Select
             value={batch}
             colorScheme="cyan"
-            color={"gray.200"}
+            color={"gray.500"}
             onChange={(e) => setBatch(e.target.value)}
             className="w-full px-4 py-2 border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
