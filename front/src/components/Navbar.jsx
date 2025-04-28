@@ -60,7 +60,12 @@ const Navbar = () => {
       >
         Dashboard
       </div>
-
+      <button
+          onClick={() => navigate("/home")}
+          className=" hover:text-teal-100 transition"
+        >
+          Home
+        </button>
       {/* Center: Upcoming Events & Request to Admin */}
       {/* <div className="flex space-x-6 text-lg font-medium">
         <button
@@ -69,12 +74,7 @@ const Navbar = () => {
         >
           Upcoming Events
         </button>
-        <button
-          onClick={() => navigate("/home")}
-          className="hover:text-teal-100 transition"
-        >
-          Home
-        </button>
+       
         <button
           onClick={() => navigate("/request-admin")}
           className="hover:text-teal-100 transition"
