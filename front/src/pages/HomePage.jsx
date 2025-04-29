@@ -18,11 +18,13 @@ import {
   Button,
 } from "@chakra-ui/react";
 import Hyperspeed from "../components/hyperSpeed";
+
 const HomePage = () => {
   const [rankings, setRankings] = useState([]);
   const [batch, setBatch] = useState("");
   const [semester, setSemester] = useState("");
   const [error, setError] = useState("");
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -37,6 +39,9 @@ const HomePage = () => {
         params: { batch, semester },
       });
       setRankings(res.data);
+
+      // ✅ After successful fetch, auto-collapse the sidebar
+      setIsSidebarCollapsed(true);
     } catch (err) {
       setError("Failed to fetch rankings.");
     }
@@ -48,12 +53,18 @@ const HomePage = () => {
     });
   };
 
+  const handleSidebarToggle = () => {
+    setIsSidebarCollapsed(!isSidebarCollapsed);
+  };
+
   return (
     <div className="flex flex-col bg-black min-h-screen">
       {/* Navbar */}
       <div className="flex-shrink-0">
         <Navbar />
       </div>
+
+      {/* Hyperspeed Background */}
       <Hyperspeed
         effectOptions={{
           onSpeedUp: () => {},
@@ -93,95 +104,144 @@ const HomePage = () => {
           },
         }}
       />
-      {/* Main content with padding-top */}
+
+      {/* Main Content */}
       <div className="flex flex-1 overflow-y-hidden pt-24">
         {/* Sidebar */}
-        <div className="w-full sm:w-1/3 lg:w-1/4 fixed h-full top-0 z-10 p-6 shadow-lg flex flex-col bg-white/10 backdrop-blur-md border border-white/30 rounded-r-2xl">
-          {/* Sidebar Heading */}
-          <Heading
-            color="gray.400"
-            marginBottom="15px"
-            className="text-3xl font-bold text-purple-200 mb-8 text-center pt-20"
-          >
-            Select Options
-          </Heading>
-
-          {/* Select Inputs */}
-          <div className="flex flex-col gap-4">
-            <Select
-              bg=""
-              color="gray.400"
-              borderColor="purple.500"
-              _hover={{ borderColor: "purple.300" }}
-              _focus={{
-                borderColor: "purple.400",
-                boxShadow: "0 0 0 1px purple",
-              }}
-              onChange={(e) => setBatch(e.target.value)}
-              value={batch}
+        <div
+          className={`fixed h-full top-0 z-10 p-4 shadow-lg flex flex-col items-center bg-white/10 backdrop-blur-md border border-white/30 rounded-r-2xl transition-all duration-500 ${
+            isSidebarCollapsed ? "w-16" : "w-full sm:w-1/3 lg:w-1/4"
+          }`}
+        >
+          {/* Toggle Button */}
+          <div className="flex justify-center mt-15">
+            <Button
+              size="sm"
+              colorScheme=""
+              variant="solid"
+              onClick={handleSidebarToggle}
+              borderRadius="full"
+              w={isSidebarCollapsed ? "10" : "32"}
+              h="10"
+              fontSize="5xl"
+              px={isSidebarCollapsed ? "0" : "4"}
             >
-              <option value="">Select Batch</option>
-              <option value="2022-2025">2022-2025</option>
-              <option value="2023-2026">2023-2026</option>
-              <option value="2024-2027">2024-2027</option>
-            </Select>
-
-            <Select
-              borderColor="purple.500"
-              onChange={(e) => setSemester(e.target.value)}
-              color="gray.400"
-              value={semester}
-            >
-              <option value="">Select Semester</option>
-              <option value="1">Semester 1</option>
-              <option value="2">Semester 2</option>
-              <option value="3">Semester 3</option>
-              <option value="4">Semester 4</option>
-              <option value="5">Semester 5</option>
-              <option value="6">Semester 6</option>
-            </Select>
+              {isSidebarCollapsed ? "+" : "-"}
+            </Button>
           </div>
 
-          {/* Error Message */}
-          {error && <p className="text-red-500 text-center mt-6">{error}</p>}
+          {/* Sidebar Content */}
+          {!isSidebarCollapsed && (
+            <>
+              {/* Heading */}
+              <Heading
+                color="gray.200"
+                marginBottom="15px"
+                className="text-3xl font-bold text-purple-200 mb-8 text-center pt-10"
+              >
+                Select Options
+              </Heading>
+
+              {/* Select Inputs */}
+              <div className="flex flex-col gap-4">
+                <Select
+                  borderColor="purple.200"
+                  _hover={{ borderColor: "purple.300" }}
+                  _focus={{
+                    borderColor: "purple.300",
+                    boxShadow: "0 0 0 1px purple",
+                  }}
+                  color="gray.100"
+                  value={batch}
+                  onChange={(e) => setBatch(e.target.value)}
+                >
+                  <option className="text-black" value="">
+                    Select Batch
+                  </option>
+                  <option className="text-black" value="2022-2025">
+                    2022-2025
+                  </option>
+                  <option className="text-black" value="2023-2026">
+                    2023-2026
+                  </option>
+                  <option className="text-black" value="2024-2027">
+                    2024-2027
+                  </option>
+                </Select>
+
+                <Select
+                  borderColor="purple.200"
+                  color="gray.100"
+                  value={semester}
+                  onChange={(e) => setSemester(e.target.value)}
+                >
+                  <option className="text-black" value="">
+                    Select Semester
+                  </option>
+                  <option className="text-black" value="1">
+                    Semester 1
+                  </option>
+                  <option className="text-black" value="2">
+                    Semester 2
+                  </option>
+                  <option className="text-black" value="3">
+                    Semester 3
+                  </option>
+                  <option className="text-black" value="4">
+                    Semester 4
+                  </option>
+                  <option className="text-black" value="5">
+                    Semester 5
+                  </option>
+                  <option className="text-black" value="6">
+                    Semester 6
+                  </option>
+                </Select>
+              </div>
+
+              {/* Error Message */}
+              {error && <p className="text-red-500 text-center mt-6">{error}</p>}
+            </>
+          )}
         </div>
 
-        {/* Scrollable student rankings */}
-        <div className="flex-1 overflow-y-auto ml-[25.33333%] ">
-          {" "}
-          {/* Adjust the left margin for space */}
+        {/* Main Content */}
+        <div
+          className={`flex-1 overflow-y-auto ${
+            isSidebarCollapsed ? "ml-20" : "ml-[25.33333%]"
+          }`}
+        >
           <Heading
-            color={"cyan.200"}
+            color={"purple.100"}
             marginBottom={"8px"}
-            className="text-4xl font-bold text-purple-200 text-center "
+            className="text-4xl font-bold text-purple-200 text-center"
           >
             Student Rankings
           </Heading>
+
           {rankings.length === 0 && (
             <p className="text-gray-300 text-center">No rankings to display.</p>
           )}
-          {/* Card Grid Layout */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+
+          {/* Cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6">
             {rankings.map((student) => (
               <Card
                 key={student.student_roll_number}
-                width="100%" // Ensure cards take full width in each grid cell
+                width="100%"
                 border="1px"
                 borderColor="purple.200"
                 rounded="xl"
-                bg=" #aeeeed" // light base color
-                bgGradient="radial-gradient(circle,rgba(174, 238, 237, 0.06) 0%, rgba(148, 187, 233, 1) 100%)" // optional nice gradient
-                opacity={0.8} // little transparent
-                backdropFilter="blur(10px)" // glass blur!
+                bg="#aeeeed"
+                bgGradient="radial-gradient(circle,rgba(174, 238, 237, 0.06) 0%, rgba(148, 187, 233, 1) 100%)"
+                opacity={0.8}
+                backdropFilter="blur(10px)"
                 boxShadow="lg"
                 _hover={{ boxShadow: "2xl", transform: "scale(1.02)" }}
                 transition="all 0.3s ease"
                 cursor="pointer"
                 onClick={() =>
-                  handleCardClick(
-                    student.student_roll_number,
-                    student.student_name
-                  )
+                  handleCardClick(student.student_roll_number, student.student_name)
                 }
               >
                 <CardHeader display="flex" justifyContent="center" mt={2}>

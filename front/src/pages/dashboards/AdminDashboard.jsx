@@ -27,14 +27,14 @@ const AdminDashboard = () => {
    
       <div className="pt-20 font-sans bg-zinc-800 min-h-screen text-white">
         <ToastContainer />
-        <Heading className="text-5xl font-semibold text-center text-purple-200 mb-8">
+        <Heading className="text-5xl font-semibold text-center text-purple-200 mb-15">
           Admin Dashboard
         </Heading>
 
-        <div className="flex justify-center">
+        <div className="flex justify-center mt-5">
           <Tabs
             variant="solid-rounded"
-            colorScheme="gray"
+            colorScheme="blue"
             align="center"
             isFitted
             className="w-full max-w-5xl"
@@ -54,7 +54,7 @@ const AdminDashboard = () => {
               </Tab>
             </TabList>
 
-            <TabPanels className="p-6 bg-white/5 rounded-lg shadow-md backdrop-blur-md">
+            <TabPanels className="p-6 bg-white/5  rounded-lg shadow-md backdrop-blur-md">
               <TabPanel>
                 <AddStudent />
               </TabPanel>
