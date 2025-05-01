@@ -212,7 +212,7 @@ const HomePage = () => {
           }`}
         >
           <Heading
-            color={"purple.100"}
+            color={"white"}
             marginBottom={"8px"}
             className="text-4xl font-bold text-purple-200 text-center"
           >

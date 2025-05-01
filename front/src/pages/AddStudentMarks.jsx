@@ -252,7 +252,7 @@ const AddStudentMarks = () => {
       />
       <div className="p-8 pt-20 font-sans bg-black min-h-screen text-white overflow-x-hidden">
         <ToastContainer />
-        <Heading textAlign="center" size="2xl" mb="8" color="cyan.400">
+        <Heading textAlign="center" size="2xl" mb="8">
           Add Student Marks
         </Heading>
 
@@ -340,6 +340,7 @@ const AddStudentMarks = () => {
                   className="p-8 mb-8 rounded-3xl shadow-2xl backdrop-blur-md bg-white/20"
                   style={{
                     border: "1px solid",
+                    background :submitted ? "":"red",
                     borderColor: submitted ? "#9f7aea" : "#f56565", // purple-500 or red-500 hex colors
                   }}
                 >
@@ -347,7 +348,7 @@ const AddStudentMarks = () => {
                     {student.student_name} ({student.student_roll_number})
                   </div>
 
-                  <div className="flex flex-wrap gap-6 justify-between">
+                  <div className="flex text-white flex-wrap gap-6 justify-between">
                     {[
                       "internal_exam_1",
                       "internal_exam_2",
@@ -356,7 +357,7 @@ const AddStudentMarks = () => {
                       "attendance",
                     ].map((field) => (
                       <div key={field} className="flex flex-col w-40">
-                        <label className="capitalize text-purple-300 mb-1">
+                        <label className="capitalize  mb-1">
                           {field.replace(/_/g, " ")}:
                         </label>
                         <Input

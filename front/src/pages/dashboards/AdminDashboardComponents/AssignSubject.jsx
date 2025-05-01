@@ -31,20 +31,20 @@ const AssignSubject = () => {
   if (showReassign) return <ReassignSubject />;
 
   return (
-    <div className="min-h-screen bg-gray-900 p-6">
-      <div className="flex justify-between items-center mb-6 max-w-7xl mx-auto">
-        <h1 className="text-3xl font-bold text-cyan-500">
+    <div className="min-h-screen rounded-xl bg-zinc-900 p-6">
+      <div className="flex justify-between rounded-xl items-center mb-6 max-w-7xl mx-auto">
+        <h1 className="text-5xl font-bold ">
           Teacher Subject Mapping
         </h1>
         <Button
           onClick={() => setShowReassign(true)}
-          className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+          className="px-4 py-2 bg-blue-600 rounded-xl hover:bg-blue-700 transition"
         >
           Reassign Subjects
         </Button>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-7xl mx-auto">
+      <div className="grid rounded-xl grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-7xl mx-auto">
         {Object.entries(assignments).map(([teacher, subjects], index) => {
           const sortedSubjects = [...subjects].sort(
             (a, b) => a.semester - b.semester
@@ -52,16 +52,16 @@ const AssignSubject = () => {
           return (
             <div
               key={index}
-              className="bg-slate-500 rounded shadow p-4 border-l-4 border-blue-500"
+              className="bg-zinc-800 rounded-xl rounded shadow p-4 border-l-4 border-blue-500"
             >
-              <span className="text-2xl font-semibold text-cyan-200 mb-2">
+              <span className="text-2xl font-semibold  mb-2">
                 {teacher}
               </span>
               <ul className="space-y-1 text-sm">
                 {sortedSubjects.map((subj, i) => (
-                  <li key={i} className="text-gray-200 text-start">
+                  <li key={i} className=" text-start">
                     {subj.subject}{" "}
-                    <span className="text-gray-500  text-center">
+                    <span className=" text-center">
                       (Sem {subj.semester})
                     </span>
                   </li>

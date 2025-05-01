@@ -27,19 +27,19 @@ const AdminDashboard = () => {
    
       <div className="pt-20 font-sans bg-zinc-800 min-h-screen text-white">
         <ToastContainer />
-        <Heading className="text-5xl font-semibold text-center text-purple-200 mb-15">
+        <Heading className="text-5xl font-semibold text-center  mb-15">
           Admin Dashboard
         </Heading>
 
         <div className="flex justify-center mt-5">
           <Tabs
             variant="solid-rounded"
-            colorScheme="blue"
+                
             align="center"
             isFitted
             className="w-full max-w-5xl"
           >
-            <TabList className="flex gap-4 mb-8">
+            <TabList  className="flex gap-4 mb-8">
               <Tab className="flex items-center gap-2">
                 <LuUserPlus /> Add Student
               </Tab>
@@ -49,7 +49,7 @@ const AdminDashboard = () => {
               <Tab className="flex items-center gap-2">
                 <LuBookOpen /> Assign Subject
               </Tab>
-              <Tab className="flex items-center gap-2">
+              <Tab  className="flex  items-center gap-2">
                 <LuClipboardCheck /> Marks Check
               </Tab>
             </TabList>
