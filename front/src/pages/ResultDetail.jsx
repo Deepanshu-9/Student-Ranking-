@@ -29,8 +29,8 @@ const ResultDetail = () => {
 
   return (
     <div className="min-h-screen bg-gray-100 p-6">
-      <div className="max-w-4xl mx-auto bg-white shadow-md rounded-lg p-6">
-        <h1 className="text-2xl font-bold text-purple-700 mb-4">Result Details</h1>
+      <div className="max-w-4xl mx-auto bg-white mt-24 shadow-md rounded-lg p-6">
+        <h1 className="text-3xl font-bold text-purple-700 mb-4">Result Details</h1>
         <p><strong>Batch:</strong> {batch}</p>
         <p><strong>Semester:</strong> {semester}</p>
         <p><strong>Roll Number:</strong> {rollNumber}</p>

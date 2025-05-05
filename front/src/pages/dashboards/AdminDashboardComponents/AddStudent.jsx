@@ -57,7 +57,7 @@ const AddStudent = () => {
   return (
     <div className="flex flex-col gap-1 lg:flex-row">
       {/* Left Panel: Add Student Form */}
-      <div className="w-full lg:w-1/1 bg-zinc-900 rounded-xl shadow-md p-6 ">
+      <div className="w-full lg:w-1/2 bg-zinc-900 rounded-xl shadow-md p-6 ">
         <Heading className="text-4xl font-semibold text-center mb-4 ">
            Add New Student
         </Heading>
@@ -144,10 +144,10 @@ const AddStudent = () => {
         {studentsList.length === 0 ? (
           <p className="text-center text-xl ">No students loaded</p>
         ) : (
-          <ol className="max-h-[400px]  overflow-y-auto text-left divide-y">
+          <ol className="max-h-[400px] scrollbar-hide overflow-y-auto text-left divide-y">
             {studentsList.map((stu) => (
               <li key={stu.student_roll_number} className="py-2">
-                <span className="font-medium ">{stu.student_name}</span> —{" "}
+                <span className="font-medium ">{stu.student_name}</span> — {"              "}
                 <span className=" ">{stu.student_roll_number}</span>
               </li>
             ))}

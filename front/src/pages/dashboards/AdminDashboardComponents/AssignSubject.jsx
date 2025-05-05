@@ -52,12 +52,12 @@ const AssignSubject = () => {
           return (
             <div
               key={index}
-              className="bg-zinc-800 rounded-xl rounded shadow p-4 border-l-4 border-blue-500"
+              className="bg-zinc-800 rounded-xl text-left  rounded shadow p-4 border-l-4 border-blue-500"
             >
-              <span className="text-2xl font-semibold  mb-2">
+              <span className="text-3xl text-left  font-semibold  mb-20">
                 {teacher}
               </span>
-              <ul className="space-y-1 text-sm">
+              <ul className="space-y-1 text-semibold  mt-25 text-sm">
                 {sortedSubjects.map((subj, i) => (
                   <li key={i} className=" text-start">
                     {subj.subject}{" "}
