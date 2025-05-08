@@ -12,6 +12,7 @@ import Privatecomp from "./components/Privatecomp";
 import DashboardRouter from "./pages/DashboardRouter";
 import AddStudentMarks from "./pages/AddStudentMarks";
 import ResultDetail from "./pages/ResultDetail";
+import { ToastContainer } from "react-toastify";
 function AppWrapper() {
   const location = useLocation();
   const user = localStorage.getItem("user");
@@ -22,7 +23,7 @@ function AppWrapper() {
   return (
     <>
       {showNavbar && <Navbar />}
-
+      <ToastContainer position="top-right" autoClose={3000} newestOnTop />
       <Routes>
         <Route path="/" element={<LoginPage />} />
         <Route

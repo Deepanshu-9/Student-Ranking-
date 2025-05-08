@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Button, Heading, Input } from "@chakra-ui/react";
+import { toast } from "react-toastify";
 
 const AddTeacher = () => {
   const [teacher, setTeacher] = useState({
@@ -23,36 +24,29 @@ const AddTeacher = () => {
       const res = await axios.get("http://localhost:5000/api/get-teachers");
       setTeacherList(res.data);
     } catch (err) {
-      alert("Failed to fetch teachers");
+      toast.error("Failed To fetch teachers",{containerId:"main"})
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!teacher.name || !teacher.email || !teacher.password) {
-      alert("Please fill in all fields");
+      toast.warn("Please fill in all fields", { containerId: "main" });
       return;
     }
 
     try {
-      const res = await axios.post("http://localhost:5000/api/add-teachers", teacher);
-      alert(res.data.message);
+      const res = await axios.post(
+        "http://localhost:5000/api/add-teachers",
+        teacher
+      ); // ✅ Corrected endpoint
+      toast.success(res.data.message, { containerId: "main" });
       setTeacher({ name: "", email: "", password: "" });
       fetchTeachers(); // refresh list
     } catch (err) {
-      alert(err.response?.data?.error || "Failed to add teacher");
-    }
-  };
-
-  const handleDelete = async (email) => {
-    if (!window.confirm("Are you sure you want to delete this teacher?")) return;
-
-    try {
-      const res = await axios.delete(`http://localhost:5000/api/teachers/${email}`);
-      alert(res.data.message);
-      fetchTeachers();
-    } catch (err) {
-      alert(err.response?.data?.error || "Failed to delete teacher");
+      toast.error(err.response?.data?.error || "Failed to add teacher", {
+        containerId: "main",
+      });
     }
   };
 

@@ -17,7 +17,8 @@ const ReassignSubject = () => {
   }, []);
 
   const fetchAssigned = () => {
-    axios.get("http://localhost:5000/api/get-teacher-subjects")
+    axios
+      .get("http://localhost:5000/api/get-teacher-subjects")
       .then((res) => {
         const grouped = res.data.reduce((acc, curr) => {
           if (!acc[curr.teacher_name]) acc[curr.teacher_name] = [];
@@ -26,13 +27,22 @@ const ReassignSubject = () => {
         }, {});
         setAssigned(grouped);
       })
-      .catch(() => toast.error("Failed to fetch assigned subjects"));
+      .catch(() =>
+        toast.error("Failed to fetch assigned subjects", {
+          containerId: "main",
+        })
+      );
   };
 
   const fetchUnassigned = () => {
-    axios.get("http://localhost:5000/get-unassigned-subjects")
+    axios
+      .get("http://localhost:5000/get-unassigned-subjects")
       .then((res) => setUnassigned(res.data))
-      .catch(() => toast.error("Failed to fetch unassigned subjects"));
+      .catch(() =>
+        toast.error("Failed to fetch unassigned subjects", {
+          containerId: "main",
+        })
+      );
   };
 
   const handleUnassign = async (teacherEmail, subjectCode) => {
@@ -41,7 +51,7 @@ const ReassignSubject = () => {
         teacher_email: teacherEmail,
         subject_codes: [subjectCode],
       });
-      toast.success("Subject unassigned successfully");
+      toast.success("Subject unassigned successfully", { containerId: "main" });
       fetchAssigned();
       fetchUnassigned();
     } catch {
@@ -55,7 +65,7 @@ const ReassignSubject = () => {
       const res = await axios.get("http://localhost:5000/api/get-teachers");
       setTeachers(res.data);
     } catch {
-      toast.error("Failed to fetch teachers");
+      toast.error("Failed to fetch teachers", { containerId: "main" });
     } finally {
       setLoadingTeachers(false);
     }
@@ -77,11 +87,13 @@ const ReassignSubject = () => {
         teacher_email: teacherEmail,
         subject_code: subjectCode,
       });
-      toast.success(res.data.message);
+      toast.success(res.data.message, { containerId: "main" });
       fetchAssigned();
       fetchUnassigned();
     } catch (err) {
-      toast.error(err?.response?.data?.message || "Assignment failed");
+      toast.error(err?.response?.data?.message || "Assignment failed", {
+        containerId: "main",
+      });
     }
   };
 
@@ -134,7 +146,7 @@ const ReassignSubject = () => {
                       <p className="text-xs text-black italic">Loading teachers...</p>
                     ) : (
                       <select
-                        className="w-full border text-black px-2 py-1 text-sm rounded mt-1"
+                        className="w-full border text-black px-2 py-1 text-sm rounded mt-1 bg-gray-300"
                         onChange={(e) => handleAssign(e.target.value, subj.subject_code)}
                         defaultValue=""
                       >
