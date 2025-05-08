@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Button, Heading, Input } from "@chakra-ui/react";
+import { toast } from "react-toastify";
 
 const AddTeacher = () => {
   const [teacher, setTeacher] = useState({
@@ -23,7 +24,7 @@ const AddTeacher = () => {
       const res = await axios.get("http://localhost:5000/api/get-teachers");
       setTeacherList(res.data);
     } catch (err) {
-      alert("Failed to fetch teachers");
+      toast.error("Failed To fetch teachers",{containerId:"main"})
     }
   };
 
