@@ -1,9 +1,12 @@
 @import "tailwindcss";
-.Toastify__toast-container {
-  z-index: 9999 !important;
-  position: fixed !important;
-}
 
-.Toastify__toast {
-  z-index: 9999 !important;
-}
+
+/* Hide scrollbar but allow scrolling */
+.scrollbar-hide {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, and Opera */
+  }
+  

@@ -37,28 +37,27 @@ const AdminDashboard = () => {
         <div className="flex justify-center mt-5">
           <Tabs
             variant="solid-rounded"
-            colorScheme="blue"
             align="center"
             isFitted
             className="w-full max-w-5xl"
             isLazy={false} // <--- Important
           >
             <TabList className="flex gap-4 mb-8">
-              <Tab className="flex items-center gap-2">
+              <Tab color="white" className="flex items-center gap-2">
                 <LuUserPlus /> Add Student
               </Tab>
-              <Tab className="flex items-center gap-2">
+              <Tab color="white" className="flex items-center gap-2">
                 <LuUser /> Add Teacher
               </Tab>
-              <Tab className="flex items-center gap-2">
+              <Tab color="white" className="flex items-center gap-2">
                 <LuBookOpen /> Assign Subject
               </Tab>
-              <Tab className="flex items-center gap-2">
+              <Tab color="white" className="flex items-center gap-2">
                 <LuClipboardCheck /> Marks Check
               </Tab>
             </TabList>
 
-            <TabPanels className="p-6 bg-white/5  rounded-lg shadow-md backdrop-blur-md">
+            <TabPanels className="p-6 bg-white/5 rounded-lg shadow-md backdrop-blur-md">
               <TabPanel>
                 <AddStudent />
               </TabPanel>

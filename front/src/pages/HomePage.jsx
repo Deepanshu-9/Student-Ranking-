@@ -58,7 +58,7 @@ const HomePage = () => {
   };
 
   return (
-    <div className="flex flex-col bg-black min-h-screen">
+    <div className="flex flex-col scrollbar-hide bg-black min-h-screen">
       {/* Navbar */}
       <div className="flex-shrink-0">
         <Navbar />
@@ -106,10 +106,10 @@ const HomePage = () => {
       />
 
       {/* Main Content */}
-      <div className="flex flex-1 overflow-y-hidden pt-24">
+      <div className="flex scrollbar-hide flex-1 overflow-y-hidden pt-24">
         {/* Sidebar */}
         <div
-          className={`fixed h-full top-0 z-10 p-4 shadow-lg flex flex-col items-center bg-white/10 backdrop-blur-md border border-white/30 rounded-r-2xl transition-all duration-500 ${
+          className={`fixed h-full scrollbar-hide top-0 z-10 p-4 shadow-lg scrollbar-hide flex flex-col items-center bg-white/10 backdrop-blur-md border border-white/30 rounded-r-2xl transition-all duration-500 ${
             isSidebarCollapsed ? "w-16" : "w-full sm:w-1/3 lg:w-1/4"
           }`}
         >
@@ -212,19 +212,19 @@ const HomePage = () => {
           }`}
         >
           <Heading
-            color={"purple.100"}
+            color={"white"}
             marginBottom={"8px"}
             className="text-4xl font-bold text-purple-200 text-center"
           >
-            Student Rankings
+            Student Ranks
           </Heading>
 
           {rankings.length === 0 && (
-            <p className="text-gray-300 text-center">No rankings to display.</p>
+            <p className="text-gray-300 text-center">No ranks to display.</p>
           )}
 
           {/* Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6">
+          <div className="grid grid-cols-1 scrollbar-hide sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6">
             {rankings.map((student) => (
               <Card
                 key={student.student_roll_number}

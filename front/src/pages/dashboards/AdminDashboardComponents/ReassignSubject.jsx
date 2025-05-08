@@ -98,19 +98,19 @@ const ReassignSubject = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-800 p-6">
-      <Heading padding={"10px"} className="text-3xl font-bold mb-6 text-center text-cyan-400">Reassign Subjects</Heading>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-7xl mx-auto">
+    <div className="min-h-screen rounded-xl bg-zinc-900 p-6">
+      <Heading padding={"10px"} className="text-3xl font-bold mb-6 text-center text-white">Reassign Subjects</Heading>
+      <div className="grid grid-cols-1 md:grid-cols-2 rounded-3xl gap-8 max-w-7xl mx-auto">
 
         {/* Assigned Subjects */}
-        <div className="bg-zinc-900 rounded shadow p-6">
+        <div className="bg-zinc-900 rounded-xl shadow p-6">
           <Heading className="text-xl font-semibold text-gray-200 mb-4">Assigned Subjects</Heading>
           {Object.entries(assigned).map(([teacher, subjects], idx) => (
             <div key={idx} className="mb-6">
-              <h3 className="text-lg font-bold text-cyan-500 mb-2">{teacher}</h3>
+              <h3 className="text-3xl font-bold text-cyan-100 mb-2">{teacher}</h3>
               <ul className="space-y-2">
                 {subjects.map((subj, i) => (
-                  <li key={i} className="flex justify-between items-center bg-gray-500 p-3 rounded border text-sm">
+                  <li key={i} className="flex justify-between items-center bg-gray-200 p-3 rounded border text-black text-sm">
                     <span>{subj.subject_name} (Sem {subj.semester})</span>
                     <button
                       onClick={() => handleUnassign(subj.teacher_email, subj.subject_code)}
@@ -126,12 +126,12 @@ const ReassignSubject = () => {
         </div>
 
         {/* Unassigned Subjects */}
-        <div className="bg-zinc-900 rounded shadow p-6">
+        <div className="bg-zinc-900 rounded-xl shadow p-6">
           <Heading className="text-xl font-semibold text-gray-200 mb-4" paddingBottom={"25px"}>Unassigned Subjects</Heading>
           <ul className="text-sm space-y-4">
             {unassigned.map((subj, index) => (
-              <li key={index} className="bg-gray-500 p-3 rounded border">
-                <div className="flex justify-between items-center">
+              <li key={index} className="bg-gray-200 text-black p-3 rounded border">
+                <div className="flex justify-between text-black items-center">
                   <span>{subj.name} ({subj.subject_code}) - Sem {subj.semester}</span>
                   <button
                     onClick={() => toggleDropdown(subj.subject_code)}
@@ -143,16 +143,16 @@ const ReassignSubject = () => {
                 {dropdownVisible[subj.subject_code] && (
                   <div className="mt-2">
                     {loadingTeachers ? (
-                      <p className="text-xs text-gray-200 italic">Loading teachers...</p>
+                      <p className="text-xs text-black italic">Loading teachers...</p>
                     ) : (
                       <select
-                        className="w-full border px-2 py-1 text-sm rounded mt-1 bg-gray-300"
+                        className="w-full border text-black px-2 py-1 text-sm rounded mt-1 bg-gray-300"
                         onChange={(e) => handleAssign(e.target.value, subj.subject_code)}
                         defaultValue=""
                       >
-                        <option value="" disabled>Select a teacher</option>
+                        <option className="text-black" value="" disabled>Select a teacher</option>
                         {teachers.map((teacher) => (
-                          <option key={teacher.email} value={teacher.email}>
+                          <option className="text-black" key={teacher.email} value={teacher.email}>
                             {teacher.name} ({teacher.email})
                           </option>
                         ))}

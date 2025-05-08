@@ -51,11 +51,11 @@ const Navbar = () => {
     <nav
       className={`${
         showNavbar ? "top-0" : "-top-20" // toggle the navbar visibility
-      } z-20 fixed w-full bg-zinc-900 text-purple-100 px-6 py-4 shadow-md flex items-center justify-between transition-all duration-300 ease-in-out`}
+      } z-20 fixed w-full bg-zinc-900 text-white px-6 py-4 shadow-md flex items-center justify-between transition-all duration-300 ease-in-out`}
     >
       {/* Left: Dashboard */}
       <div
-        className="text-2xl font-semibold cursor-pointer hover:text-teal-100 transition"
+        className="text-2xl  font-semibold cursor-pointer text-white hover:text-teal-100 transition"
         onClick={() => navigate("/dashboard")}
       >
         Dashboard

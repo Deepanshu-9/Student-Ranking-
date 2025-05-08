@@ -60,15 +60,15 @@ const AddStudent = () => {
   };
 
   return (
-    <div className="flex flex-col gap-6  lg:flex-row">
+    <div className="flex flex-col gap-1 lg:flex-row">
       {/* Left Panel: Add Student Form */}
-      <div className="w-full lg:w-1/2 bg-zinc-900 rounded-xl shadow-md p-6 bg-zinc-100">
-        <Heading className="text-4xl font-semibold text-center mb-4 text-purple-100">
+      <div className="w-full lg:w-1/2 bg-zinc-900 rounded-xl shadow-md p-6 ">
+        <Heading className="text-4xl font-semibold text-center mb-4 ">
            Add New Student
         </Heading>
 
         <div className="mb-4">
-          <label className="block text-purple-100 text-xl font-medium mb-1">Batch</label>
+          <label className="block  text-xl text-left font-medium mb-1">Batch</label>
           <Select
             value={batch}
             colorScheme="cyan"
@@ -85,7 +85,7 @@ const AddStudent = () => {
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block  text-purple-100 text-xl font-medium mb-1">Roll Number</label>
+            <label className="block text-xl text-left font-medium mb-1">Roll Number</label>
             <Input
               type="text"
               name="roll_number"
@@ -97,7 +97,7 @@ const AddStudent = () => {
           </div>
 
           <div>
-            <label className="block  text-purple-100 text-xl font-medium mb-1">Name</label>
+            <label className="block text-xl text-left font-medium mb-1">Name</label>
             <Input
               type="text"
               name="name"
@@ -109,7 +109,7 @@ const AddStudent = () => {
           </div>
 
           <div>
-            <label className="block  text-purple-100 text-xl font-medium mb-1">Password</label>
+            <label className="block   text-xl  text-left font-medium mb-1">Password</label>
             <Input
               type="password"
               name="password"
@@ -123,15 +123,17 @@ const AddStudent = () => {
           <div className="flex justify-between gap-4">
             <Button
               type="button"
+              background="green.100"
               onClick={fetchStudents}
-              className="w-1/2 bg-yellow-500 text-white py-2 rounded-md hover:bg-yellow-600 transition duration-200"
+              className="w-1/2 bg-yellow-500 text-white  py-2 rounded-md hover:bg-yellow-600 transition duration-200"
             >
               📥 Fetch Students
             </Button>
 
             <Button
               type="submit"
-              className="w-1/2 bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition duration-200"
+              background="blue.100"
+              className="w-1/2 bg-blue-600  py-2 rounded-md hover:bg-blue-700 transition duration-200"
             >
               ➕ Add Student
             </Button>
@@ -141,17 +143,17 @@ const AddStudent = () => {
 
       {/* Right Panel: Student List */}
       <div className="w-full lg:w-1/2 bg-zinc-900 rounded-xl shadow-md p-6 bg-zinc-100">
-        <h2 className="text-3xl font-semibold text-center mb-4 text-purple-200">
+        <h2 className="text-5xl font-semibold text-center mb-4 ">
           🧑‍🎓 Students in {batch || "Selected Batch"}
         </h2>
         {studentsList.length === 0 ? (
-          <p className="text-center text-xl text-purple-100">No students loaded</p>
+          <p className="text-center text-xl ">No students loaded</p>
         ) : (
-          <ol className="max-h-[400px]  overflow-y-auto divide-y">
+          <ol className="max-h-[400px] scrollbar-hide overflow-y-auto text-left divide-y">
             {studentsList.map((stu) => (
               <li key={stu.student_roll_number} className="py-2">
-                <span className="font-medium text-purple-100">{stu.student_name}</span> —{" "}
-                <span className="text-purple-100 ">{stu.student_roll_number}</span>
+                <span className="font-medium ">{stu.student_name}</span> — {"              "}
+                <span className=" ">{stu.student_roll_number}</span>
               </li>
             ))}
           </ol>
