@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 import { Select, Input, Button, Heading } from "@chakra-ui/react";
+import { toast } from "react-toastify";
 const AddStudent = () => {
   const [batch, setBatch] = useState(""); // shared batch
   const [student, setStudent] = useState({
@@ -22,7 +23,7 @@ const AddStudent = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!student.roll_number || !student.name || !student.password || !batch) {
-      toast.warn("Please fill in all fields");
+      toast.warn("Please fill in all fields", { containerId: "main" });
       return;
     }
 
@@ -31,26 +32,30 @@ const AddStudent = () => {
         ...student,
         batch,
       });
-      toast.success(res.data.message);
+      toast.success(res.data.message, { containerId: "main" });
       setStudent({ roll_number: "", name: "", password: "" });
     } catch (err) {
-      toast.error(err.response?.data?.error || "Failed to add student");
+      toast.error(err.response?.data?.error || "Failed to add student", {
+        containerId: "main",
+      });
     }
   };
 
   const fetchStudents = async () => {
     if (!batch) {
-      toast.warn("Please select a batch first");
+      toast.error("Please Select a Batch First", { containerId: "main" });
+
       return;
     }
-
     try {
       const res = await axios.get("http://localhost:5000/api/fetch-students", {
         params: { batch },
       });
       setStudentsList(res.data);
     } catch (err) {
-      toast.error(err.response?.data?.error || "Failed to fetch students");
+      toast.error(err.response?.data?.error || "Failed to fetch students", {
+        containerId: "main",
+      });
     }
   };
 

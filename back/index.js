@@ -12,7 +12,7 @@ app.use(cors());
 const db = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "root", // Change this to your actual MySQL password
+  password: "Mysql@9759", // Change this to your actual MySQL password
   database: "project"
 });
 
@@ -82,7 +82,7 @@ app.get("/api/studentdetails", (req, res) => {
 
   db.query(query, [rollNumber], (err, results) => {
     if (err) {
-      console.error("Error fetching student details:", err);
+      // console.error("Error fetching student details:", err);
       return res.status(500).json({ error: "Failed to fetch student details." });
     }
 
@@ -169,11 +169,11 @@ app.get("/api/fetch-students", (req, res) => {
   const query = `SELECT roll_number AS student_roll_number, name AS student_name FROM student WHERE batch = CAST(? AS CHAR)`;
   db.query(query, [batch], (err, results) => {
     if (err) {
-      console.error("Database Error:", err.message);
+      // console.error("Database Error:", err.message);
       return res.status(500).json({ error: err.message });
     }
 
-    console.log("Query results:", results); // Log query results
+    // console.log("Query results:", results); // Log query results
     res.json(results);
   });
 });

@@ -20,13 +20,16 @@ import MarkUploadCheck from "./AdminDashboardComponents/MarkUploadCheck";
 import AddTeacher from "./AdminDashboardComponents/AddTeacher";
 import AssignSubject from "./AdminDashboardComponents/AssignSubject";
 
-
 const AdminDashboard = () => {
   return (
     <>
-   
       <div className="pt-20 font-sans bg-zinc-800 min-h-screen text-white">
-        <ToastContainer />
+        <ToastContainer
+          enableMultiContainer
+          containerId="main"
+          position="top-right"
+          autoClose={3000}
+        />
         <Heading className="text-5xl font-semibold text-center text-purple-200 mb-15">
           Admin Dashboard
         </Heading>
@@ -38,6 +41,7 @@ const AdminDashboard = () => {
             align="center"
             isFitted
             className="w-full max-w-5xl"
+            isLazy={false} // <--- Important
           >
             <TabList className="flex gap-4 mb-8">
               <Tab className="flex items-center gap-2">

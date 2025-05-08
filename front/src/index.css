@@ -1,2 +1,9 @@
-
 @import "tailwindcss";
+.Toastify__toast-container {
+  z-index: 9999 !important;
+  position: fixed !important;
+}
+
+.Toastify__toast {
+  z-index: 9999 !important;
+}

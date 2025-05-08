@@ -31,7 +31,7 @@ const AddTeacher = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!teacher.name || !teacher.email || !teacher.password) {
-      toast.warn("Please fill in all fields");
+      toast.warn("Please fill in all fields", { containerId: "main" });
       return;
     }
 
@@ -40,11 +40,13 @@ const AddTeacher = () => {
         "http://localhost:5000/api/add-teachers",
         teacher
       ); // ✅ Corrected endpoint
-      toast.success(res.data.message);
+      toast.success(res.data.message, { containerId: "main" });
       setTeacher({ name: "", email: "", password: "" });
       fetchTeachers(); // refresh list
     } catch (err) {
-      toast.error(err.response?.data?.error || "Failed to add teacher");
+      toast.error(err.response?.data?.error || "Failed to add teacher", {
+        containerId: "main",
+      });
     }
   };
 
