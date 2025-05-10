@@ -49,6 +49,20 @@ const AddTeacher = () => {
       });
     }
   };
+  const handleDelete = async (email) => {
+    if (!window.confirm("Are you sure you want to delete this teacher?")) return;
+  
+    try {
+      const res = await axios.delete(`http://localhost:5000/api/teachers/${email}`);
+      toast.success(res.data.message, { containerId: "main" });
+      fetchTeachers(); // Refresh the list
+    } catch (err) {
+      toast.error(err.response?.data?.error || "Failed to delete teacher", {
+        containerId: "main",
+      });
+    }
+  };
+  
 
   useEffect(() => {
     fetchTeachers();

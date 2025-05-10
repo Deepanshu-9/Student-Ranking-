@@ -55,7 +55,7 @@ const Navbar = () => {
     >
       {/* Left: Dashboard */}
       <div
-        className="text-2xl  font-semibold cursor-pointer text-white hover:text-teal-100 transition"
+        className="text-2xl  font-semibold cursor-pointer text-sky-200 hover:text-teal-100 transition"
         onClick={() => navigate("/dashboard")}
       >
         Dashboard

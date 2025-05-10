@@ -56,8 +56,8 @@ const MarkUploadCheck = () => {
 
   return (
     <>
+      <div className="min-h-screen rounded-xl bg-zinc-900 p-6">
       <ToastContainer/>
-      <div className="min-h-screen rounded-xl bg-gray-700 p-6">
         <div className="max-w-4xl mx-auto bg-zinc-900 p-6 rounded-xl shadow">
           <Heading className="text-2xl font-bold text-center  mb-6" padding={"20px"}>
             Check Marks Upload Status
@@ -106,7 +106,7 @@ const MarkUploadCheck = () => {
               Check Missing Marks
             </Button>
             <Button
-              className="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700"
+              className="bg-green-200 text-white px-6 py-2 rounded hover:bg-green-700"
               onClick={handleUploadedCheck}
             >
               Check Uploaded Marks
@@ -116,7 +116,7 @@ const MarkUploadCheck = () => {
           {/* Missing Entries Table */}
           {result && result.status === "incomplete" && (
             <div className="mt-8">
-              <h2 className="text-lg font-semibold text-red-600 mb-2">Missing Entries</h2>
+              <h2 className="text-2xl font-semibold text-red-200 mb-2">Missing Entries</h2>
               <div className="overflow-x-auto">
                 <table className="w-full text-sm border">
                   <thead className="bg-gray-800 text-left">

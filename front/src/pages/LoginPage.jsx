@@ -130,7 +130,7 @@ const LoginPage = () => {
 
                 {loginType === "student" && (
                   <>
-                    <label className="block mb-2 text-xl text-purple-300 font-semibold">
+                    <label className="block mb-2 text-xl text-white font-semibold">
                       Roll Number
                     </label>
                     <Input
@@ -148,7 +148,7 @@ const LoginPage = () => {
 
                 {loginType === "teacher" && (
                   <>
-                    <label className="block mb-2 text-xl text-purple-300 font-semibold">
+                    <label className="block mb-2 text-xl text-white font-semibold">
                       Email
                     </label>
                     <Input
@@ -166,7 +166,7 @@ const LoginPage = () => {
 
                 {loginType === "admin" && (
                   <>
-                    <label className="block mb-2 text-xl text-purple-300 font-semibold">
+                    <label className="block mb-2 text-xl text-white font-semibold">
                       Admin ID
                     </label>
                     <Input
@@ -182,7 +182,7 @@ const LoginPage = () => {
                   </>
                 )}
 
-                <label className="block mb-2 text-xl text-purple-300 font-semibold">
+                <label className="block mb-2 text-xl text-white font-semibold">
                   Password
                 </label>
                 <Input
@@ -198,13 +198,13 @@ const LoginPage = () => {
 
                 <Button
                   type="submit"
-                  background={"purple.500"}
+                  background={"purple.200"}
                   w="full"
                   fontWeight="bold"
                   fontSize="2xl"
                   py={2}
                   rounded="md"
-                  _hover={{ bg: "purple.500" }}
+                  _hover={{ bg: "purple.300" }}
                   transition="0.2s"
                   marginTop={"10px"}
                 >

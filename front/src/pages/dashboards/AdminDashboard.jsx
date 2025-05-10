@@ -30,7 +30,7 @@ const AdminDashboard = () => {
           position="top-right"
           autoClose={3000}
         />
-        <Heading className="text-5xl font-semibold text-center text-purple-200 mb-15">
+        <Heading className="text-5xl font-semibold text-center text-white mb-15">
           Admin Dashboard
         </Heading>
 
