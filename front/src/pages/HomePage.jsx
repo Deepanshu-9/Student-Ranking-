@@ -18,6 +18,8 @@ import {
   Button,
 } from "@chakra-ui/react";
 import Hyperspeed from "../components/hyperSpeed";
+import Particles from "../components/particles";
+import LetterGlitch from "../components/aurora";
 
 const HomePage = () => {
   const [rankings, setRankings] = useState([]);
@@ -58,14 +60,14 @@ const HomePage = () => {
   };
 
   return (
-    <div className="flex flex-col scrollbar-hide bg-black min-h-screen">
+    <div className="flex flex-col scrollbar-hide bg-red-400 min-h-screen relative">
       {/* Navbar */}
       <div className="flex-shrink-0">
         <Navbar />
       </div>
 
       {/* Hyperspeed Background */}
-      <Hyperspeed
+      {/* <Hyperspeed
         effectOptions={{
           onSpeedUp: () => {},
           onSlowDown: () => {},
@@ -103,10 +105,26 @@ const HomePage = () => {
             sticks: 0x03b3c3,
           },
         }}
-      />
+      /> */}
+
+      {/* particles */}
+      {/* <div >
+        <Particles
+          particleColors={["#ffffff", "#ffffff"]}
+          particleCount={200}
+          particleSpread={10}
+          speed={0.1}
+          particleBaseSize={100}
+          moveParticlesOnHover={true}
+          alphaParticles={false}
+          disableRotation={false}
+        />
+      </div> */}
+
+      {/* Number glitch */}
 
       {/* Main Content */}
-      <div className="flex scrollbar-hide flex-1 overflow-y-hidden pt-24">
+      <div className="flex scrollbar-hide ">
         {/* Sidebar */}
         <div
           className={`fixed h-full scrollbar-hide top-0 z-10 p-4 shadow-lg scrollbar-hide flex flex-col items-center bg-white/10 backdrop-blur-md border border-white/30 rounded-r-2xl transition-all duration-500 ${
@@ -200,7 +218,9 @@ const HomePage = () => {
               </div>
 
               {/* Error Message */}
-              {error && <p className="text-red-500 text-center mt-6">{error}</p>}
+              {error && (
+                <p className="text-red-500 text-center mt-6">{error}</p>
+              )}
             </>
           )}
         </div>
@@ -211,10 +231,15 @@ const HomePage = () => {
             isSidebarCollapsed ? "ml-20" : "ml-[25.33333%]"
           }`}
         >
+          {/* Background glitch */}
+          <div className="absolute inset-0  z-0">
+            <LetterGlitch className="absolute z-0 w-full h-full" />
+          </div>
           <Heading
             color={"white"}
             marginBottom={"8px"}
-            className="text-4xl font-bold text-purple-200 text-center"
+            className="text-4xl font-bold z-10 text-purple-200 text-center mt-20"
+            style={{ marginTop: "75px" }}
           >
             Student Ranks
           </Heading>
@@ -241,7 +266,10 @@ const HomePage = () => {
                 transition="all 0.3s ease"
                 cursor="pointer"
                 onClick={() =>
-                  handleCardClick(student.student_roll_number, student.student_name)
+                  handleCardClick(
+                    student.student_roll_number,
+                    student.student_name
+                  )
                 }
               >
                 <CardHeader display="flex" justifyContent="center" mt={2}>

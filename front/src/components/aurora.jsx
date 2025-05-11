@@ -1,4 +1,4 @@
-import React,{ useRef, useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 
 const LetterGlitch = ({
   glitchColors = ["#2b4539", "#61dca3", "#61b3dc"],
@@ -239,7 +239,7 @@ const LetterGlitch = ({
 
     context.current = canvas.getContext("2d");
     resizeCanvas();
-    animate();
+    animate(); // ✅ run animation loop after setup
 
     let resizeTimeout;
 
